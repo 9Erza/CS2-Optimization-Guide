@@ -56,9 +56,9 @@ Pomiary zostały przeprowadzone w ściśle kontrolowanych warunkach, aby zapewni
 | :--- | :--- | :--- | :--- | :--- |
 | **Average FPS** | 827.8 | 825.8 | 828.6 | **827.4** |
 | **P1 (1%)** | 270.2 | 274.9 | 272.2 | **272.4** |
-| **P0.1 (0.1%)** | 235.5 | 241.0 | 239.5 | **238,6** |
+| **P0.1 (0.1%)** | 235.5 | 241.0 | 239.5 | **238.6** |
 | **1% Low Average** | 252.2 | 257.9 | 255.8 | **255.3** |
-| **0.1% Low Average** | 217.9 | 223.8 | 222.8 | **223.5s** |
+| **0.1% Low Average** | 217.9 | 223.8 | 222.8 | **223.5** |
 
 #### ⏱️ Frametime Results (ms)
 
@@ -87,7 +87,7 @@ Pomiary zostały przeprowadzone w ściśle kontrolowanych warunkach, aby zapewni
 | :--- | :--- | :--- | :--- | :--- |
 | **Average FPS** | 862.9 | 860.7 | 863.3 | **862.3** |
 | **P1 (1%)** | 293.0 | 294.2 | 294.6 | **293.9** |
-| **P0.1 (0.1%)** | 263.3 | 251.4 | 264.4 | **259,7** |
+| **P0.1 (0.1%)** | 263.3 | 251.4 | 264.4 | **259.7** |
 | **1% Low Average** | 276.6 | 272.4 | 279.8 | **276.2** |
 | **0.1% Low Average** | 236.5 | 213.5 | 247.5 | **232.5** |
 
@@ -100,12 +100,12 @@ Pomiary zostały przeprowadzone w ściśle kontrolowanych warunkach, aby zapewni
 | **0.1% High Avg ms** | 4.227 | 4.693 | 4.040 | **4.320** |
 
 #### 📝 Notes / Wnioski
-**[ENG]** Disabling Core 0 using the Process Core Optimizer yields a noticeable performance uplift over the STOCK configuration. The average FPS increased by ~35 frames (from 827.4 to 862.3), and the 1% Low Average improved from 256.4 to 278.1 FPS. This confirms that preventing the game from using the primary OS-loaded core reduces interruptions and stabilizes frametimes significantly on the 7800X3D.
+**[ENG]** Disabling Core 0 using the Process Core Optimizer yields a noticeable performance uplift over the STOCK configuration. The average FPS increased by ~35 frames (from 827.4 to 862.3), and the 1% Low Average improved from 255.3 to 276.2 FPS. This confirms that preventing the game from using the primary OS-loaded core reduces interruptions and stabilizes frametimes significantly on the 7800X3D.
 
 <details>
 <summary>🇵🇱 Wersja polska (Rozwiń)</summary>
 
-**[PL]** Wyłączenie rdzenia 0 (Core 0) za pomocą Process Core Optimizer przynosi zauważalny wzrost wydajności względem konfiguracji STOCK. Średni FPS wzrósł o ok. 35 klatek (z 827.4 do 862.3), a wynik 1% Low Average poprawił się z 256.4 do 278.1 FPS. Potwierdza to, że izolacja gry od pierwszego rdzenia (często obciążonego przez system operacyjny) redukuje mikroprzycięcia i znacząco stabilizuje czasy renderowania klatek (frametime) na procesorze 7800X3D.
+**[PL]** Wyłączenie rdzenia 0 (Core 0) za pomocą Process Core Optimizer przynosi zauważalny wzrost wydajności względem konfiguracji STOCK. Średni FPS wzrósł o ok. 35 klatek (z 827.4 do 862.3), a wynik 1% Low Average poprawił się z 255.3 do 276.2 FPS. Potwierdza to, że izolacja gry od pierwszego rdzenia (często obciążonego przez system operacyjny) redukuje mikroprzycięcia i znacząco stabilizuje czasy renderowania klatek (frametime) na procesorze 7800X3D.
 </details>
 
 ---
@@ -119,7 +119,7 @@ Pomiary zostały przeprowadzone w ściśle kontrolowanych warunkach, aby zapewni
 | **Average FPS** | 841.1 | 833.2 | 839.1 | **837.8** |
 | **P1 (1%)** | 276.5 | 274.9 | 279.7 | **277.1** |
 | **P0.1 (0.1%)** | 241.7 | 242.4 | 245.5 | **243.2** |
-| **1% Low Average** | 258.1 | 257.0 | 261.2 | **258,7** |
+| **1% Low Average** | 258.1 | 257.0 | 261.2 | **258.7** |
 | **0.1% Low Average** | 220.1 | 220.7 | 225.8 | **222.2** |
 
 #### ⏱️ Frametime Results (ms)
@@ -162,12 +162,12 @@ Pomiary zostały przeprowadzone w ściśle kontrolowanych warunkach, aby zapewni
 | **0.1% High Avg ms** | 4.188 | 4.002 | 4.041 | **4.077** |
 
 #### 📝 Notes / Wnioski
-**[ENG]** Using the custom Process Core Optimizer application, a hard affinity mask was used to disable Hyper-Threading (SMT) and completely isolate the game from the primary OS core (`Core 0`). The results are spectacular. The Average FPS skyrocketed to nearly 900 (a massive ~72 FPS jump from the STOCK baseline), while maintaining exceptionally tight 1% Lows (~288 FPS). This proves that eliminating virtual threads while simultaneously protecting the game from background OS interruptions yields the highest performance scaling on the 7800X3D.
+**[ENG]** Using the custom Process Core Optimizer application, a hard affinity mask was used to disable Hyper-Threading (SMT) and completely isolate the game from the primary OS core (`Core 0`). The results are spectacular. The Average FPS skyrocketed to nearly 900 (a massive ~72 FPS jump from the STOCK baseline), while maintaining exceptionally tight 1% Lows (~286 FPS). This proves that eliminating virtual threads while simultaneously protecting the game from background OS interruptions yields the highest performance scaling on the 7800X3D.
 
 <details>
 <summary>🇵🇱 Wersja polska (Rozwiń)</summary>
 
-**[PL]** Przy użyciu autorskiego programu Process Core Optimizer zastosowano sztywną maskę koligacji, aby wyłączyć hiperwątkowość (SMT) oraz całkowicie odciąć grę od głównego rdzenia systemowego (`Core 0`). Wyniki są spektakularne. Średni FPS poszybował w okolice 900 klatek (skok o ok. 72 FPS względem czystego STOCK), przy zachowaniu niezwykle stabilnych ułamków 1% Low (~288 FPS). Dowodzi to, że jednoczesna eliminacja wirtualnych wątków oraz ochrona gry przed przerwaniami systemowymi w tle daje najlepsze możliwe skalowanie wydajności na procesorze 7800X3D.
+**[PL]** Przy użyciu autorskiego programu Process Core Optimizer zastosowano sztywną maskę koligacji, aby wyłączyć hiperwątkowość (SMT) oraz całkowicie odciąć grę od głównego rdzenia systemowego (`Core 0`). Wyniki są spektakularne. Średni FPS poszybował w okolice 900 klatek (skok o ok. 72 FPS względem czystego STOCK), przy zachowaniu niezwykle stabilnych ułamków 1% Low (~286 FPS). Dowodzi to, że jednoczesna eliminacja wirtualnych wątków oraz ochrona gry przed przerwaniami systemowymi w tle daje najlepsze możliwe skalowanie wydajności na procesorze 7800X3D.
 </details>
 
 ---
@@ -182,7 +182,7 @@ Pomiary zostały przeprowadzone w ściśle kontrolowanych warunkach, aby zapewni
 | **P1 (1%)** | 292.3 | 290.3 | 294.1 | **292.3** |
 | **P0.1 (0.1%)** | 260.0 | 256.0 | 266.5 | **260.8** |
 | **1% Low Average** | 275.6 | 273.5 | 279.9 | **276.3** |
-| **0.1% Low Average** | 235.6 | 233.4 | 245.7 | **238,2** |
+| **0.1% Low Average** | 235.6 | 233.4 | 245.7 | **238.2** |
 
 #### ⏱️ Frametime Results (ms)
 
@@ -255,12 +255,12 @@ Pomiary zostały przeprowadzone w ściśle kontrolowanych warunkach, aby zapewni
 | **0.1% High Avg ms** | 4.223 | 4.212 | 4.023 | **4.153** |
 
 #### 📝 Notes / Wnioski
-**[ENG]** This scenario uses the Windows CPU Sets API to disable Hyper-Threading (SMT) and prevent the game from using Core 0 simultaneously. The performance is nearly identical to the Hard Affinity variant (`Test Case 4`), achieving a massive ~897 Average FPS (a ~70 FPS uplift over STOCK) and rock-solid 1% Lows (~285 FPS). This confirms that Windows CPU Sets is highly effective on the 7800X3D, offering maximum performance scaling without the strict thread-locking behavior of traditional hard affinity.
+**[ENG]** This scenario uses the Windows CPU Sets API to disable Hyper-Threading (SMT) and prevent the game from using Core 0 simultaneously. The performance is nearly identical to the Hard Affinity variant (`Test Case 4`), achieving a massive ~897 Average FPS (a ~70 FPS uplift over STOCK) and rock-solid 1% Lows (~284 FPS). This confirms that Windows CPU Sets is highly effective on the 7800X3D, offering maximum performance scaling without the strict thread-locking behavior of traditional hard affinity.
 
 <details>
 <summary>🇵🇱 Wersja polska (Rozwiń)</summary>
 
-**[PL]** W tym wariancie wykorzystano API Windows CPU Sets, aby jednocześnie wyłączyć dla gry hiperwątkowość (SMT) oraz uniemożliwić jej dostęp do rdzenia zerowego (Core 0). Wydajność jest niemal identyczna jak w przypadku twardej koligacji (`Test Case 4`) – uzyskujemy potężną średnią ~897 FPS (skok o ok. 70 FPS względem STOCK) oraz niezwykle stabilne 1% Low (~285 FPS). Potwierdza to, że mechanizm CPU Sets działa na 7800X3D znakomicie, oferując maksymalne skalowanie wydajności bez restrykcyjnego blokowania wątków charakterystycznego dla klasycznej koligacji.
+**[PL]** W tym wariancie wykorzystano API Windows CPU Sets, aby jednocześnie wyłączyć dla gry hiperwątkowość (SMT) oraz uniemożliwić jej dostęp do rdzenia zerowego (Core 0). Wydajność jest niemal identyczna jak w przypadku twardej koligacji (`Test Case 4`) – uzyskujemy potężną średnią ~897 FPS (skok o ok. 70 FPS względem STOCK) oraz niezwykle stabilne 1% Low (~284 FPS). Potwierdza to, że mechanizm CPU Sets działa na 7800X3D znakomicie, oferując maksymalne skalowanie wydajności bez restrykcyjnego blokowania wątków charakterystycznego dla klasycznej koligacji.
 </details>
 
 ---
