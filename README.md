@@ -11,7 +11,7 @@ The benchmarks were conducted in a strictly controlled environment to ensure rep
 * **Procedure:** Each test case consists of 3 identical benchmark runs to calculate a reliable average.
 * **In-Game Settings:** Strictly identical across all runs. No settings or in-game affinity mechanics were modified between test cases.
 * **CS2 Launch Options:** `-allow_third_party_software` (strictly required for CapFrameX benchmarking). Absolutely NO other launch parameters were used.
-* **Thread Scheduling:** All core affinity and CPU Sets modifications were handled exclusively via a custom-built utility: [Process Core Optimizer](https://github.com/9Erza/ProcessCoreOptimizer). 
+* **Thread Scheduling:** All core affinity and CPU Sets modifications were handled exclusively via a my custom-built utility: [Process Core Optimizer](https://github.com/9Erza/ProcessCoreOptimizer). 
   * *Software Disclaimer:* This optimizer is a personal/hobbyist project tailored for these specific tweaks. Users seeking established, commercial-grade alternatives can achieve similar scenarios using software like **Process Lasso**.
 * **OS Configuration:** HAGS (Hardware-Accelerated GPU Scheduling) Enabled, Windows Game Mode Enabled.
 * **Future Roadmap:** Tests on a secondary platform (Ryzen 7 5700X + RTX 2080 + 32GB 3600MHz CL16) and various combinations of in-game graphical settings are planned for future updates.
