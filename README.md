@@ -11,7 +11,7 @@ The benchmarks were conducted in a strictly controlled environment to ensure rep
 * **Procedure:** Each test case consists of 3 identical benchmark runs to calculate a reliable average.
 * **In-Game Settings:** Strictly identical across all runs. No settings or in-game affinity mechanics were modified between test cases.
 * **CS2 Launch Options:** `-allow_third_party_software` (strictly required for CapFrameX benchmarking). Absolutely NO other launch parameters were used.
-* **Thread Scheduling:** All core affinity and CPU Sets modifications were handled exclusively via a my custom-built utility: [Process Core Optimizer](https://github.com/9Erza/ProcessCoreOptimizer). 
+* **Thread Scheduling:** All core affinity and CPU Sets modifications were handled exclusively via a custom-built utility: [Process Core Optimizer](https://github.com/9Erza/ProcessCoreOptimizer). 
   * *Software Disclaimer:* This optimizer is a personal/hobbyist project tailored for these specific tweaks. Users seeking established, commercial-grade alternatives can achieve similar scenarios using software like **Process Lasso**.
 * **OS Configuration:** HAGS (Hardware-Accelerated GPU Scheduling) Enabled, Windows Game Mode Enabled.
 * **Future Roadmap:** Tests on a secondary platform (Ryzen 7 5700X + RTX 2080 + 32GB 3600MHz CL16) and various combinations of in-game graphical settings are planned for future updates.
@@ -48,7 +48,7 @@ Pomiary zostały przeprowadzone w ściśle kontrolowanych warunkach, aby zapewni
 
 ---
 
-### ⚙️ Test Case: CS2 STOCK (Baseline)
+### ⚙️ Test Case 1: CS2 - STOCK
 
 #### 📈 FPS Results (Frames Per Second)
 
@@ -79,7 +79,7 @@ Pomiary zostały przeprowadzone w ściśle kontrolowanych warunkach, aby zapewni
 
 ---
 
-### ⚙️ Test Case: Core Affinity - Core 0 Disabled (Core -0)
+### ⚙️ Test Case 2: CS2 - CPU Affinity - Core 0 OFF
 
 #### 📈 FPS Results (Frames Per Second)
 
@@ -110,7 +110,7 @@ Pomiary zostały przeprowadzone w ściśle kontrolowanych warunkach, aby zapewni
 
 ---
 
-### ⚙️ Test Case: Core Affinity - OFF (No Affinity Binding)
+### ⚙️ Test Case 3: CS2 - CPU Affinity - SMT/HT OFF
 
 #### 📈 FPS Results (Frames Per Second)
 
@@ -131,17 +131,17 @@ Pomiary zostały przeprowadzone w ściśle kontrolowanych warunkach, aby zapewni
 | **0.1% High Avg ms** | 4.549 | 4.536 | 4.429 | **4.505** |
 
 #### 📝 Notes / Wnioski
-**[ENG]** In this scenario, core affinity manipulation was completely disabled (`AFFINITY OFF`). The results show a slight improvement over the pure STOCK configuration (around +10 FPS on the average), but it falls significantly behind the `Core -0` configuration in both Average FPS (~838 vs ~862) and 1% Lows. This demonstrates that leaving thread management entirely to the OS/Game scheduler without protecting it from the primary Core 0 overhead is sub-optimal for the 7800X3D.
+**[ENG]** In this scenario, a strict CPU Affinity mask was applied to disable Hyper-Threading (SMT) for the game process, but without isolating it from Core 0. The results show a slight improvement over the pure STOCK configuration (around +10 FPS on the average). However, it falls significantly behind the `Core 0 OFF` configuration, demonstrating that simply removing virtual threads without protecting the process from the primary OS core overhead is sub-optimal for the 7800X3D.
 
 <details>
 <summary>🇵🇱 Wersja polska (Rozwiń)</summary>
 
-**[PL]** W tym scenariuszu wyłączono wszelkie modyfikacje koligacji rdzeni (`AFFINITY OFF`). Wyniki pokazują minimalną poprawę względem czystej konfiguracji STOCK (ok. +10 FPS średnio), ale zauważalnie odstają od konfiguracji wyłączającej rdzeń zerowy (`Core -0`) - zarówno w średnim FPS (~838 względem ~862), jak i wartościach 1% Low. Dowodzi to, że pozostawienie zarządzania wątkami wyłącznie systemowi i grze, bez izolacji pierwszego rdzenia (Core 0), daje na procesorze 7800X3D suboptymalne rezultaty.
+**[PL]** W tym scenariuszu zastosowano sztywną maskę koligacji (CPU Affinity), aby wyłączyć hiperwątkowość (SMT) dla procesu gry, ale bez odcinania go od rdzenia zerowego. Wyniki pokazują minimalną poprawę względem czystej konfiguracji STOCK (ok. +10 FPS średnio). Odstają one jednak zauważalnie od konfiguracji wyłączającej rdzeń zerowy (`Core 0 OFF`), co dowodzi, że samo wyłączenie wirtualnych wątków, bez ochrony gry przed obciążeniem ze strony systemu operacyjnego, daje suboptymalne rezultaty na procesorze 7800X3D.
 </details>
 
 ---
 
-### ⚙️ Test Case: Hyper-Threading (SMT) OFF + Core 0 Disabled
+### ⚙️ Test Case 4: CS2 - CPU Affinity - SMT/HT OFF + Core 0 OFF
 
 #### 📈 FPS Results (Frames Per Second)
 
@@ -162,17 +162,17 @@ Pomiary zostały przeprowadzone w ściśle kontrolowanych warunkach, aby zapewni
 | **0.1% High Avg ms** | 4.188 | 4.002 | 4.041 | **4.077** |
 
 #### 📝 Notes / Wnioski
-**[ENG]** Using the custom Process Core Optimizer application, Hyper-Threading (SMT) was disabled for the process and it was completely isolated from the primary OS core (`Core 0`). The results are spectacular. The Average FPS skyrocketed to nearly 900 (a massive ~72 FPS jump from the STOCK baseline), while maintaining exceptionally tight 1% Lows (~288 FPS). This proves that eliminating virtual threads and protecting the game from background OS interruptions on the primary core yields the highest performance scaling on the 7800X3D.
+**[ENG]** Using the custom Process Core Optimizer application, a hard affinity mask was used to disable Hyper-Threading (SMT) and completely isolate the game from the primary OS core (`Core 0`). The results are spectacular. The Average FPS skyrocketed to nearly 900 (a massive ~72 FPS jump from the STOCK baseline), while maintaining exceptionally tight 1% Lows (~288 FPS). This proves that eliminating virtual threads while simultaneously protecting the game from background OS interruptions yields the highest performance scaling on the 7800X3D.
 
 <details>
 <summary>🇵🇱 Wersja polska (Rozwiń)</summary>
 
-**[PL]** Przy użyciu autorskiego programu Process Core Optimizer, dla procesu gry wyłączono hiperwątkowość (SMT) oraz całkowicie odcięto mu dostęp do głównego rdzenia systemowego (`Core 0`). Wyniki są spektakularne. Średni FPS poszybował w okolice 900 klatek (skok o ok. 72 FPS względem czystego STOCK), przy zachowaniu niezwykle stabilnych ułamków 1% Low (~288 FPS). Dowodzi to, że eliminacja wirtualnych wątków oraz ochrona gry przed przerwaniami systemowymi w tle daje najlepsze możliwe skalowanie wydajności na procesorze 7800X3D.
+**[PL]** Przy użyciu autorskiego programu Process Core Optimizer zastosowano sztywną maskę koligacji, aby wyłączyć hiperwątkowość (SMT) oraz całkowicie odciąć grę od głównego rdzenia systemowego (`Core 0`). Wyniki są spektakularne. Średni FPS poszybował w okolice 900 klatek (skok o ok. 72 FPS względem czystego STOCK), przy zachowaniu niezwykle stabilnych ułamków 1% Low (~288 FPS). Dowodzi to, że jednoczesna eliminacja wirtualnych wątków oraz ochrona gry przed przerwaniami systemowymi w tle daje najlepsze możliwe skalowanie wydajności na procesorze 7800X3D.
 </details>
 
 ---
 
-### ⚙️ Test Case: Windows CPU Sets - Core 0 Disabled
+### ⚙️ Test Case 5: CS2 - CPU Sets - Core 0 OFF
 
 #### 📈 FPS Results (Frames Per Second)
 
@@ -193,17 +193,17 @@ Pomiary zostały przeprowadzone w ściśle kontrolowanych warunkach, aby zapewni
 | **0.1% High Avg ms** | 4.245 | 4.285 | 4.070 | **4.200** |
 
 #### 📝 Notes / Wnioski
-**[ENG]** This test utilizes the Windows "CPU Sets" mechanism instead of strict hard affinity to park Core 0. The results are remarkably similar to the hard affinity test (`Core Affinity - Core 0 Disabled`). The average FPS sits solidly around ~863, providing a tangible boost over the STOCK configuration while matching the stability of hard affinity. It demonstrates that the Windows scheduler respects the soft limits imposed by CPU Sets perfectly in this scenario.
+**[ENG]** This test utilizes the Windows "CPU Sets" mechanism instead of strict hard affinity to park Core 0. The results are remarkably similar to the hard affinity test (`Test Case 2`). The average FPS sits solidly around ~863, providing a tangible boost over the STOCK configuration while matching the stability of hard affinity. It demonstrates that the Windows scheduler respects the soft limits imposed by CPU Sets perfectly in this scenario.
 
 <details>
 <summary>🇵🇱 Wersja polska (Rozwiń)</summary>
 
-**[PL]** W tym teście wykorzystano mechanizm Windows "CPU Sets" zamiast "twardej" koligacji (Hard Affinity), aby odciążyć rdzeń 0 (Core 0). Wyniki są uderzająco podobne do testu twardej koligacji (`Core Affinity - Core 0 Disabled`). Średnia liczba FPS wynosi stabilne ~863 klatki, zapewniając wyraźny wzrost wydajności w stosunku do konfiguracji bazowej (STOCK), jednocześnie dorównując stabilnością klasycznej koligacji. Pokazuje to, że w tym scenariuszu systemowy scheduler idealnie respektuje "miękkie" limity narzucane przez mechanizm CPU Sets.
+**[PL]** W tym teście wykorzystano mechanizm Windows "CPU Sets" zamiast "twardej" koligacji (Hard Affinity), aby odciążyć rdzeń 0 (Core 0). Wyniki są uderzająco podobne do analogicznego testu z twardą koligacją (`Test Case 2`). Średnia liczba FPS wynosi stabilne ~863 klatki, zapewniając wyraźny wzrost wydajności w stosunku do konfiguracji bazowej (STOCK), jednocześnie dorównując stabilnością klasycznej koligacji. Pokazuje to, że w tym scenariuszu systemowy scheduler idealnie respektuje "miękkie" limity narzucane przez mechanizm CPU Sets.
 </details>
 
 ---
 
-### ⚙️ Test Case: Windows CPU Sets - Hyper-Threading (SMT) OFF
+### ⚙️ Test Case 6: CS2 - CPU Sets - SMT/HT OFF
 
 #### 📈 FPS Results (Frames Per Second)
 
@@ -224,17 +224,17 @@ Pomiary zostały przeprowadzone w ściśle kontrolowanych warunkach, aby zapewni
 | **0.1% High Avg ms** | 4.429 | 4.348 | 4.343 | **4.373** |
 
 #### 📝 Notes / Wnioski
-**[ENG]** In this scenario, the custom application uses the Windows CPU Sets mechanism to disable Hyper-Threading (SMT) for the game, but without isolating it from the primary Core 0. The performance improves over the baseline STOCK configuration (~846 FPS vs ~827 FPS), proving that removing virtual threads is beneficial. However, it falls significantly short of the ~900 FPS achieved when Core 0 is simultaneously disabled. This highlights that while SMT removal helps, the critical bottleneck on the 7800X3D is OS background interference on the primary core.
+**[ENG]** In this scenario, the application uses the Windows CPU Sets mechanism to instruct the scheduler to avoid Hyper-Threading (SMT) logical cores for the game, without isolating it from the primary Core 0. Performance improves over the baseline STOCK configuration (~846 FPS vs ~827 FPS), proving that removing virtual threads is beneficial. However, it falls short of the ~900 FPS achieved when Core 0 is simultaneously disabled.
 
 <details>
 <summary>🇵🇱 Wersja polska (Rozwiń)</summary>
 
-**[PL]** W tym scenariuszu aplikacja wykorzystuje mechanizm Windows CPU Sets do wyłączenia hiperwątkowości (SMT) dla procesu gry, ale bez izolowania go od głównego rdzenia (Core 0). Wydajność wzrasta względem bazowej konfiguracji STOCK (~846 FPS vs ~827 FPS), co dowodzi, że usunięcie wirtualnych wątków przynosi korzyści. Wynik ten jest jednak znacznie niższy od potężnych ~900 FPS osiągniętych, gdy rdzeń zerowy był równocześnie wyłączony. Wyraźnie podkreśla to fakt, że choć wyłączenie SMT pomaga, głównym "wąskim gardłem" na 7800X3D są procesy i przerwania systemowe działające w tle na pierwszym rdzeniu.
+**[PL]** W tym scenariuszu aplikacja wykorzystuje mechanizm Windows CPU Sets, instruując system, aby omijał logiczne wątki SMT dla procesu gry, ale bez izolowania go od głównego rdzenia (Core 0). Wydajność wzrasta względem bazowej konfiguracji STOCK (~846 FPS vs ~827 FPS), co dowodzi korzyści płynących z usunięcia wirtualnych wątków. Wynik ten jest jednak niższy od potężnych ~900 FPS osiągniętych, gdy rdzeń zerowy zostaje równocześnie wyłączony.
 </details>
 
 ---
 
-### ⚙️ Test Case: Windows CPU Sets - Hyper-Threading (SMT) OFF + Core 0 Disabled
+### ⚙️ Test Case 7: CS2 - CPU Sets - SMT/HT OFF + Core 0 OFF
 
 #### 📈 FPS Results (Frames Per Second)
 
@@ -255,19 +255,19 @@ Pomiary zostały przeprowadzone w ściśle kontrolowanych warunkach, aby zapewni
 | **0.1% High Avg ms** | 4.223 | 4.212 | 4.023 | **4.153** |
 
 #### 📝 Notes / Wnioski
-**[ENG]** This scenario uses the Windows CPU Sets API to disable Hyper-Threading (SMT) and prevent the game from using Core 0. The performance is nearly identical to the Hard Affinity variant, achieving a massive ~897 Average FPS (a ~70 FPS uplift over STOCK) and rock-solid 1% Lows (~285 FPS). This confirms that Windows CPU Sets is highly effective on the 7800X3D, offering maximum performance scaling without the strict thread-locking behavior of traditional hard affinity, which some anti-cheats or background processes might conflict with.
+**[ENG]** This scenario uses the Windows CPU Sets API to disable Hyper-Threading (SMT) and prevent the game from using Core 0 simultaneously. The performance is nearly identical to the Hard Affinity variant (`Test Case 4`), achieving a massive ~897 Average FPS (a ~70 FPS uplift over STOCK) and rock-solid 1% Lows (~285 FPS). This confirms that Windows CPU Sets is highly effective on the 7800X3D, offering maximum performance scaling without the strict thread-locking behavior of traditional hard affinity.
 
 <details>
 <summary>🇵🇱 Wersja polska (Rozwiń)</summary>
 
-**[PL]** W tym wariancie wykorzystano API Windows CPU Sets, aby wyłączyć dla gry hiperwątkowość (SMT) oraz uniemożliwić jej dostęp do rdzenia zerowego (Core 0). Wydajność jest niemal identyczna jak w przypadku twardej koligacji (Hard Affinity) – uzyskujemy potężną średnią ~897 FPS (skok o ok. 70 FPS względem STOCK) oraz niezwykle stabilne 1% Low (~285 FPS). Potwierdza to, że mechanizm CPU Sets działa na 7800X3D znakomicie, oferując maksymalne skalowanie wydajności bez restrykcyjnego blokowania wątków, które w przypadku tradycyjnej koligacji potrafi czasem sprawiać problemy z antycheatami lub procesami w tle.
+**[PL]** W tym wariancie wykorzystano API Windows CPU Sets, aby jednocześnie wyłączyć dla gry hiperwątkowość (SMT) oraz uniemożliwić jej dostęp do rdzenia zerowego (Core 0). Wydajność jest niemal identyczna jak w przypadku twardej koligacji (`Test Case 4`) – uzyskujemy potężną średnią ~897 FPS (skok o ok. 70 FPS względem STOCK) oraz niezwykle stabilne 1% Low (~285 FPS). Potwierdza to, że mechanizm CPU Sets działa na 7800X3D znakomicie, oferując maksymalne skalowanie wydajności bez restrykcyjnego blokowania wątków charakterystycznego dla klasycznej koligacji.
 </details>
 
 ---
 
 ## 💡 Final Summary & Conclusions
 
-**The Recommended Configuration:** Based on the data gathered, **Windows CPU Sets (Hyper-Threading OFF + Core 0 Disabled)** is definitively the most optimal setting.
+**The Recommended Configuration:** Based on the data gathered, **CS2 - CPU Sets - SMT/HT OFF + Core 0 OFF** is definitively the most optimal setting.
 
 **Why?**
 1. **Identical Peak Performance:** The results are virtually identical to strict "Hard Affinity" binding (only marginally lower in margin-of-error territory), securing a massive ~70 FPS uplift over STOCK settings.
@@ -282,7 +282,7 @@ All data presented in this repository comes from private benchmarking on a speci
 <details>
 <summary>🇵🇱 Podsumowanie i Wnioski (Rozwiń)</summary>
 
-**Rekomendowana konfiguracja:** Analiza zgromadzonych danych bezsprzecznie wskazuje, że ustawienie **Windows CPU Sets (Hyper-Threading OFF + Core 0 Disabled)** jest najbardziej optymalnym wyborem.
+**Rekomendowana konfiguracja:** Analiza zgromadzonych danych bezsprzecznie wskazuje, że ustawienie **CS2 - CPU Sets - SMT/HT OFF + Core 0 OFF** jest najbardziej optymalnym wyborem.
 
 **Dlaczego?**
 1. **Maksymalna wydajność:** Wyniki są w zasadzie identyczne jak przy stosowaniu sztywnego "Hard Affinity" (różnice mieszczą się w granicy błędu pomiarowego), co daje potężny skok wydajności o około 70 FPS względem czystego STOCKa.
