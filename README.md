@@ -143,3 +143,26 @@
 **[PL]** W tym scenariuszu aplikacja wykorzystuje mechanizm Windows CPU Sets do wyłączenia hiperwątkowości (SMT) dla procesu gry, ale bez izolowania go od głównego rdzenia (Core 0). Wydajność wzrasta względem bazowej konfiguracji STOCK (~846 FPS vs ~827 FPS), co dowodzi, że usunięcie wirtualnych wątków przynosi korzyści. Wynik ten jest jednak znacznie niższy od potężnych ~900 FPS osiągniętych, gdy rdzeń zerowy był równocześnie wyłączony. Wyraźnie podkreśla to fakt, że choć wyłączenie SMT pomaga, głównym "wąskim gardłem" na 7800X3D są procesy i przerwania systemowe działające w tle na pierwszym rdzeniu.
 
 
+### ⚙️ Test Case: Windows CPU Sets - Hyper-Threading (SMT) OFF + Core 0 Disabled
+
+#### 📈 FPS Results (Frames Per Second)
+
+| Metric / Parametr | Run 1 | Run 2 | Run 3 | 🏆 AVERAGE / ŚREDNIA |
+| :--- | :--- | :--- | :--- | :--- |
+| **Average FPS** | 894.3 | 896.8 | 900.5 | **897.2** |
+| **P1 (1%)** | 302.6 | 299.0 | 302.6 | **301.4** |
+| **P0.2 (0.2%)** | 277.7 | 275.1 | 280.9 | **277.9** |
+| **1% Low Average** | 285.6 | 282.5 | 287.9 | **285.3** |
+| **0.1% Low Average** | 243.8 | 240.8 | 251.9 | **245.5** |
+
+#### ⏱️ Frametime Results (ms)
+
+| Metric / Parametr | Run 1 | Run 2 | Run 3 | 🏆 AVERAGE / ŚREDNIA |
+| :--- | :--- | :--- | :--- | :--- |
+| **Average ms** | 1.118 | 1.115 | 1.111 | **1.115** |
+| **1% High Avg ms** | 3.525 | 3.559 | 3.488 | **3.524** |
+| **0.1% High Avg ms** | 4.223 | 4.212 | 4.023 | **4.153** |
+
+#### 📝 Notes / Wnioski
+**[ENG]** This scenario uses the Windows CPU Sets API to disable Hyper-Threading (SMT) and prevent the game from using Core 0. The performance is nearly identical to the Hard Affinity variant, achieving a massive ~897 Average FPS (a ~70 FPS uplift over STOCK) and rock-solid 1% Lows (~285 FPS). This confirms that Windows CPU Sets is highly effective on the 7800X3D, offering maximum performance scaling without the strict thread-locking behavior of traditional hard affinity, which some anti-cheats or background processes might conflict with.
+**[PL]** W tym wariancie wykorzystano API Windows CPU Sets, aby wyłączyć dla gry hiperwątkowość (SMT) oraz uniemożliwić jej dostęp do rdzenia zerowego (Core 0). Wydajność jest niemal identyczna jak w przypadku twardej koligacji (Hard Affinity) – uzyskujemy potężną średnią ~897 FPS (skok o ok. 70 FPS względem STOCK) oraz niezwykle stabilne 1% Low (~285 FPS). Potwierdza to, że mechanizm CPU Sets działa na 7800X3D znakomicie, oferując maksymalne skalowanie wydajności bez restrykcyjnego blokowania wątków, które w przypadku tradycyjnej koligacji potrafi czasem sprawiać problemy z antycheatami lub procesami w tle.
