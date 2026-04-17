@@ -31,9 +31,9 @@ The benchmarks were conducted in a strictly controlled environment to ensure rep
 <summary>🖼️ View In-Game Settings / Zobacz ustawienia w grze (Rozwiń)</summary>
 <br>
 <p align="center">
-  <img src="https://github.com/9Erza/CS2-Optimization-Guide/blob/main/images/video-settings/screen-settings.jpg?raw=true" width="32%" alt="Screen Settings">
-  <img src="https://github.com/9Erza/CS2-Optimization-Guide/blob/main/images/video-settings/graphics-settings-1.jpg?raw=true" width="32%" alt="Graphics Settings 1">
-  <img src="https://github.com/9Erza/CS2-Optimization-Guide/blob/main/images/video-settings/graphics-settings-2.jpg?raw=true" width="32%" alt="Graphics Settings 2">
+  <img src="https://github.com/9Erza/CS2-Optimization-Guide/blob/main/images/video-settings/screen-settings.jpg?raw=true" width="60%" alt="Screen Settings">
+  <img src="https://github.com/9Erza/CS2-Optimization-Guide/blob/main/images/video-settings/graphics-settings-1.jpg?raw=true" width="60%" alt="Graphics Settings 1">
+  <img src="https://github.com/9Erza/CS2-Optimization-Guide/blob/main/images/video-settings/graphics-settings-2.jpg?raw=true" width="60%" alt="Graphics Settings 2">
 </p>
 
 </details>
