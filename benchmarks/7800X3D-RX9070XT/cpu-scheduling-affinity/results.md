@@ -1,1 +1,0 @@
-capframex results in json
