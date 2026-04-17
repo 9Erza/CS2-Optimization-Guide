@@ -9,6 +9,10 @@ This repository documents comprehensive performance testing and optimization str
 The benchmarks were conducted in a strictly controlled environment to ensure repeatability.
 * **Isolation:** Only Steam (Offline Mode), CapFrameX (Capture Tool), and Process Core Optimizer were active in the background.
 * **Procedure:** Each test case consists of 3 identical benchmark runs to calculate a reliable average.
+* **In-Game Settings:** Strictly identical across all runs. No settings or in-game affinity mechanics were modified between test cases.
+* **CS2 Launch Options:** `-allow_third_party_software` (strictly required for CapFrameX benchmarking). Absolutely NO other launch parameters were used.
+* **Thread Scheduling:** All core affinity and CPU Sets modifications were handled exclusively via a custom-built utility: [Process Core Optimizer](https://github.com/9Erza/ProcessCoreOptimizer). 
+  * *Software Disclaimer:* This optimizer is a personal/hobbyist project tailored for these specific tweaks. Users seeking established, commercial-grade alternatives can achieve similar scenarios using software like **Process Lasso**.
 * **OS Configuration:** HAGS (Hardware-Accelerated GPU Scheduling) Enabled, Windows Game Mode Enabled.
 * **Future Roadmap:** Tests on a secondary platform (Ryzen 7 5700X + RTX 2080 + 32GB 3600MHz CL16) and various combinations of in-game graphical settings are planned for future updates.
 
@@ -33,6 +37,10 @@ The benchmarks were conducted in a strictly controlled environment to ensure rep
 Pomiary zostały przeprowadzone w ściśle kontrolowanych warunkach, aby zapewnić pełną powtarzalność.
 * **Izolacja:** W tle działały tylko Steam (Tryb Offline), CapFrameX oraz autorski program Process Core Optimizer.
 * **Procedura:** Każdy scenariusz opiera się na 3 identycznych przejazdach testowych w celu wyciągnięcia wiarygodnej średniej.
+* **Ustawienia w grze:** Identyczne we wszystkich przejazdach. W żadnym z testów nie zmieniano ustawień graficznych ani nie używano wbudowanych w grę mechanizmów koligacji.
+* **Opcje startowe CS2:** `-allow_third_party_software` (niezbędne, by CapFrameX mógł zliczać klatki). Nie użyto absolutnie żadnych innych parametrów startowych.
+* **Zarządzanie wątkami:** Wszelkie modyfikacje koligacji (Affinity) oraz mechanizmu CPU Sets były wymuszane z zewnątrz, wyłącznie z poziomu autorskiej aplikacji: [Process Core Optimizer](https://github.com/9Erza/ProcessCoreOptimizer).
+  * *Nota o oprogramowaniu:* Jest to autorski projekt stworzony na własny użytek. Użytkownicy poszukujący komercyjnych, w pełni profesjonalnych rozwiązań mogą osiągnąć podobne rezultaty korzystając z programów takich jak **Process Lasso**.
 * **Konfiguracja OS:** HAGS (Hardware-Accelerated GPU Scheduling) włączone, Tryb Gry (Game Mode) włączony.
 * **Plany na przyszłość:** W późniejszym czasie w repozytorium pojawią się testy na starszej platformie (Ryzen 7 5700X + RTX 2080 + 32GB DDR4 3600MHz CL16) oraz sprawdzenie różnych kombinacji ustawień graficznych wewnątrz gry CS2.
 
@@ -154,12 +162,12 @@ Pomiary zostały przeprowadzone w ściśle kontrolowanych warunkach, aby zapewni
 | **0.1% High Avg ms** | 4.188 | 4.002 | 4.041 | **4.077** |
 
 #### 📝 Notes / Wnioski
-**[ENG]** In this configuration, in-game settings were left untouched. Instead, the custom Process Core Optimizer application was used to disable Hyper-Threading (SMT) for the process and isolate it from the primary OS core (`Core 0`). The results are spectacular. The Average FPS skyrocketed to nearly 900 (a massive ~72 FPS jump from the STOCK baseline), while maintaining exceptionally tight 1% Lows (~288 FPS). This proves that eliminating virtual threads and protecting the game from background OS interruptions on the primary core yields the highest performance scaling on the 7800X3D.
+**[ENG]** Using the custom Process Core Optimizer application, Hyper-Threading (SMT) was disabled for the process and it was completely isolated from the primary OS core (`Core 0`). The results are spectacular. The Average FPS skyrocketed to nearly 900 (a massive ~72 FPS jump from the STOCK baseline), while maintaining exceptionally tight 1% Lows (~288 FPS). This proves that eliminating virtual threads and protecting the game from background OS interruptions on the primary core yields the highest performance scaling on the 7800X3D.
 
 <details>
 <summary>🇵🇱 Wersja polska (Rozwiń)</summary>
 
-**[PL]** W tej konfiguracji ustawienia samej gry pozostały nietknięte. Zamiast tego, przy użyciu autorskiego programu Process Core Optimizer, dla procesu gry wyłączono hiperwątkowość (SMT) oraz całkowicie odcięto dostęp do głównego rdzenia systemowego (`Core 0`). Wyniki są spektakularne. Średni FPS poszybował w okolice 900 klatek (skok o ok. 72 FPS względem czystego STOCK), przy zachowaniu niezwykle stabilnych ułamków 1% Low (~288 FPS). Dowodzi to, że eliminacja wirtualnych wątków oraz ochrona gry przed przerwaniami systemowymi w tle daje najlepsze możliwe skalowanie wydajności na procesorze 7800X3D.
+**[PL]** Przy użyciu autorskiego programu Process Core Optimizer, dla procesu gry wyłączono hiperwątkowość (SMT) oraz całkowicie odcięto mu dostęp do głównego rdzenia systemowego (`Core 0`). Wyniki są spektakularne. Średni FPS poszybował w okolice 900 klatek (skok o ok. 72 FPS względem czystego STOCK), przy zachowaniu niezwykle stabilnych ułamków 1% Low (~288 FPS). Dowodzi to, że eliminacja wirtualnych wątków oraz ochrona gry przed przerwaniami systemowymi w tle daje najlepsze możliwe skalowanie wydajności na procesorze 7800X3D.
 </details>
 
 ---
