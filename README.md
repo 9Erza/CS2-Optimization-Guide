@@ -42,7 +42,7 @@ The benchmarks were conducted in a strictly controlled environment to ensure rep
 
 </details>
 
-
+<details>
 <summary>🇵🇱 Metodologia i Środowisko Testowe (Rozwiń)</summary>
 
 **Data testów:** 17.04.2026 (Benchmarki głównego PC)
