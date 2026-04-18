@@ -4,16 +4,18 @@ Comprehensive guide and data-driven analysis of CS2 performance across CPU sched
 
 ---
 
-## 📌 Table of Contents / Spis Treści
+## 📌 Table of Contents
 1. [🔬 Methodology & Test Environment](#-methodology--test-environment)
 2. [⚙️ Section 1: CPU Scheduling (Affinity vs CPU Sets)](#-section-1-cpu-scheduling)
 3. [🖥️ Section 2: Windows Settings & Optimizations](#-section-2-windows-settings)
-4. [📺 Section 3: Full Screen vs Borderless Window](#-section-3-display-modes)
-5. [🏎️ Section 4: Input Lag Tech (Anti-Lag 2.0 / Reflex)](#-section-4-latency-technologies)
-6. [📊 Section 5: Graphics Settings Performance Impact](#-section-5-graphics-impact)
-7. [🖼️ Section 6: Visual Comparison & Visibility Guide](#-section-6-visual-comparisons)
-8. [🏆 Section 7: Summary & Recommended Settings](#-section-7-summary)
-
+4. [🚀 Section 3: CS2 Launch Options](#-section-3-launch-options)
+5. [📺 Section 4: Display Modes (Full Screen vs Borderless)](#-section-4-display-modes)
+6. [📏 Section 5: Resolutions Comparison](#-section-5-resolutions-comparison)
+7. [🛡️ Section 6: FACEIT Anti-Cheat Impact & Optimization](#-section-6-faceit-anti-cheat-impact)
+8. [🏎️ Section 7: Latency Technologies (Anti-Lag 2.0 / Reflex)](#-section-7-latency-technologies)
+9. [📊 Section 8: Graphics Settings Performance Impact](#-section-8-graphics-impact)
+10. [🖼️ Section 9: Visual Comparison & Visibility Guide](#-section-9-visual-comparisons)
+11. [🏆 Section 10: Summary & Recommended Settings](#-section-10-summary)
 ---
 
 ## 🔬 Methodology & Test Environment
