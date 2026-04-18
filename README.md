@@ -348,6 +348,176 @@ For players using modern hardware and Windows 11 (with "Optimizations for window
 ---
 
 <details>
+<summary><h2>📏 Section 5: Resolutions Comparison</h2></summary>
+
+### Overview
+In the competitive Counter-Strike community, resolution choice is a long-standing debate. While many professional players stick to lower, "stretched" 4:3 resolutions for larger player models and maximum performance, others prefer the clarity of native 16:9. This section breaks down the raw performance data for the three most popular resolutions used in CS2 today.
+
+The tests show a clear scaling of Average FPS as resolution decreases, but interestingly, the 1% and 0.1% lows remain relatively tight, indicating that at these extreme framerates, the system starts to encounter CPU-side limitations.
+
+---
+
+### ⚙️ Resolution: 1024x768
+
+#### 📈 FPS Results (Frames Per Second)
+
+| Metric | Run 1 | Run 2 | Run 3 | 🏆 AVERAGE |
+|---|---|---|---|---|
+| **Average FPS** | 942.2 | 945.1 | 944.0 | **943.8** |
+| **P1 (1%)** | 302.9 | 308.7 | 303.7 | **305.2** |
+| **P0.1 (0.1%)** | 272.4 | 278.4 | 272.6 | **274.1** |
+| **1% Low Average** | 287.1 | 293.4 | 288.0 | **289.3** |
+| **0.1% Low Average** | 249.2 | 255.6 | 250.5 | **251.6** |
+
+**Analysis:** This is the absolute performance king. By dropping to 1024x768, the system maintains a staggering ~944 Average FPS. It provides the most "headroom" for the GPU, though at this level, the visual clarity is significantly reduced.
+
+---
+
+### ⚙️ Resolution: 1280x960
+
+#### 📈 FPS Results (Frames Per Second)
+
+| Metric | Run 1 | Run 2 | Run 3 | 🏆 AVERAGE |
+|---|---|---|---|---|
+| **Average FPS** | 900.1 | 898.7 | 901.5 | **900.1** |
+| **P1 (1%)** | 304.0 | 303.5 | 305.0 | **304.1** |
+| **P0.1 (0.1%)** | 272.8 | 270.8 | 274.9 | **272.6** |
+| **1% Low Average** | 287.7 | 286.6 | 289.2 | **287.8** |
+| **0.1% Low Average** | 249.1 | 243.3 | 252.8 | **248.2** |
+
+**Analysis:** Often considered the "sweet spot" for 4:3 stretched players. It delivers a rock-solid 900 Average FPS while maintaining noticeably better visibility than 1024x768. The 1% Lows are virtually identical to the lower resolution, suggesting the CPU is the stabilizing factor here.
+
+---
+
+### ⚙️ Resolution: 1920x1080
+
+#### 📈 FPS Results (Frames Per Second)
+
+| Metric | Run 1 | Run 2 | Run 3 | 🏆 AVERAGE |
+|---|---|---|---|---|
+| **Average FPS** | 741.9 | 741.1 | 738.6 | **740.5** |
+| **P1 (1%)** | 290.5 | 295.3 | 289.6 | **291.7** |
+| **P0.1 (0.1%)** | 259.0 | 262.5 | 260.0 | **260.4** |
+| **1% Low Average** | 273.8 | 278.2 | 273.9 | **275.1** |
+| **0.1% Low Average** | 236.2 | 238.7 | 236.0 | **236.9** |
+
+**Analysis:** Native 1080p introduces a significant performance tax, dropping the Average FPS by ~160 frames compared to 1280x960 (an ~18% decrease). While 740 FPS is still elite-tier performance, the drop in 1% Lows (~275 FPS) shows that higher pixel counts do put more strain on the overall frame pacing.
+
+---
+
+### 🏆 Resolution Conclusion
+* **Maximum Competitive Edge:** If you prioritize raw frame throughput and the classic "stretched" look, **1280x960** or **1024x768** are the clear winners.
+* **Modern Standards:** **1920x1080** offers the best visibility and a wider Field of View (FOV). On a high-end system like the 7800X3D + RX 9070 XT, you can afford the performance hit, but the competitive advantage of the 4:3 resolutions remains measurable in both raw FPS and frametime stability.
+
+</details>
+
+---
+
+<details>
+<summary><h2>🛡️ Section 6: FACEIT Anti-Cheat Impact & Optimization</h2></summary>
+
+### Overview
+FACEIT Anti-Cheat (AC) is a robust, kernel-level driver required for competitive play on the FACEIT platform. Because it aggressively scans memory, monitors active threads, and intercepts system calls in real-time to catch cheats, it is widely known to cause a performance hit. 
+
+In this section, we test the raw performance impact of simply running the FACEIT AC in the background. Furthermore, we test popular community "optimizations"—such as using CPU Affinity or CPU Sets to isolate the AC process to Core 0, or moving the game away from it—to see if we can reclaim those lost frames.
+
+---
+
+### ⚙️ CS2: NO FACEIT AC (Baseline)
+
+#### 📈 FPS Results (Frames Per Second)
+
+| Metric | Run 1 | Run 2 | Run 3 | 🏆 AVERAGE |
+|---|---|---|---|---|
+| **Average FPS** | 900.1 | 898.7 | 901.5 | **900.1** |
+| **P1 (1%)** | 304.0 | 303.5 | 305.0 | **304.1** |
+| **P0.1 (0.1%)** | 272.8 | 270.8 | 274.9 | **272.6** |
+| **1% Low Average** | 287.7 | 286.6 | 289.2 | **287.8** |
+| **0.1% Low Average** | 249.1 | 243.3 | 252.8 | **248.2** |
+
+**Analysis:** Our standard baseline without the anti-cheat running, comfortably sitting at a 900 Average FPS.
+
+---
+
+### ⚙️ CS2: FACEIT AC - Stock
+
+#### 📈 FPS Results (Frames Per Second)
+
+| Metric | Run 1 | Run 2 | Run 3 | 🏆 AVERAGE |
+|---|---|---|---|---|
+| **Average FPS** | 853.3 | 854.0 | 860.4 | **855.9** |
+| **P1 (1%)** | 285.9 | 282.3 | 287.1 | **285.1** |
+| **P0.1 (0.1%)** | 252.3 | 251.5 | 258.5 | **254.2** |
+| **1% Low Average** | 270.0 | 267.3 | 273.0 | **270.0** |
+| **0.1% Low Average** | 232.7 | 229.9 | 235.6 | **232.4** |
+
+**Analysis:** Simply launching the FACEIT Client and Anti-Cheat introduces a massive performance tax. We lose roughly ~44 Average FPS, and the 0.1% Lows drop from ~248 to ~232 FPS. The aggressive background polling takes a noticeable toll on frame pacing.
+
+---
+
+### ⚙️ CS2: FACEIT AC - CPU Sets (Only Core 0)
+
+#### 📈 FPS Results (Frames Per Second)
+
+| Metric | Run 1 | Run 2 | Run 3 | 🏆 AVERAGE |
+|---|---|---|---|---|
+| **Average FPS** | 853.8 | 860.6 | 857.5 | **857.3** |
+| **P1 (1%)** | 286.9 | 287.0 | 285.0 | **286.4** |
+| **P0.1 (0.1%)** | 257.5 | 258.5 | 255.7 | **257.2** |
+| **1% Low Average** | 272.7 | 272.6 | 269.8 | **271.7** |
+| **0.1% Low Average** | 235.4 | 238.0 | 228.8 | **234.0** |
+
+**Analysis:** A common community tweak is attempting to force the FaceitAC processes to run only on Core 0 using soft Windows CPU Sets. The result? Absolutely zero meaningful impact. A difference of 1.4 FPS falls entirely within the margin of error.
+
+---
+
+### ⚙️ CS2: FACEIT AC - CPU Affinity (Only Core 0)
+
+#### 📈 FPS Results (Frames Per Second)
+
+| Metric | Run 1 | Run 2 | Run 3 | 🏆 AVERAGE |
+|---|---|---|---|---|
+| **Average FPS** | 849.6 | 858.4 | 849.0 | **852.3** |
+| **P1 (1%)** | 288.9 | 283.7 | 283.7 | **285.3** |
+| **P0.1 (0.1%)** | 258.6 | 252.8 | 252.8 | **254.8** |
+| **1% Low Average** | 273.9 | 268.3 | 269.4 | **270.4** |
+| **0.1% Low Average** | 234.1 | 229.0 | 232.0 | **231.7** |
+
+**Analysis:** Using hard CPU Affinity to rigidly lock the FACEIT processes to Core 0 yields the same result. Performance is completely identical to the stock behavior, and in some runs, marginally worse. 
+
+---
+
+### ⚙️ CS2: FACEIT AC - CPU Affinity (Core 0 OFF)
+
+#### 📈 FPS Results (Frames Per Second)
+
+| Metric | Run 1 | Run 2 | Run 3 | 🏆 AVERAGE |
+|---|---|---|---|---|
+| **Average FPS** | 856.4 | 857.4 | 858.6 | **857.5** |
+| **P1 (1%)** | 283.1 | 283.8 | 284.0 | **283.7** |
+| **P0.1 (0.1%)** | 254.6 | 256.5 | 252.6 | **254.6** |
+| **1% Low Average** | 268.2 | 269.7 | 269.7 | **269.2** |
+| **0.1% Low Average** | 230.7 | 233.2 | 232.6 | **232.2** |
+
+**Analysis:** Applying same strategy as with `cs2.exe` process which is turning off core 0 for Faceit Anty-Cheat process. Once again, the performance remains stuck in the mid-850s. The optimizations failed to reclaim the 40+ FPS lost to the anti-cheat.
+
+---
+
+### 🏆 FACEIT Anti-Cheat Conclusion
+
+**The heavy performance impact of the FACEIT Anti-Cheat is inevitable, and trying to "optimize" it is a waste of time.**
+
+The data clearly demonstrates that running the FACEIT AC will cost you roughly ~5% of your total framerate and slightly degrade your 1% and 0.1% lows. More importantly, **none of the widely recommended community tweaks work**. 
+
+Whether you use CPU Sets, Hard Affinity, isolate the AC, or isolate the game, the performance remains strictly identical to doing nothing at all. This is because FACEIT's core operations happen at the Windows kernel level (Ring 0). User-space tools like Process Lasso or custom affinity scripts only affect user-mode application threads. They cannot dictate how or when a kernel driver schedules its deep-system scans. 
+
+**Recommendation:** If you are playing on FACEIT, leave your core affinities at default (or use the CPU Sets optimization for the game itself as shown in Section 1), and accept the performance tax. Do not bother trying to restrict the FACEIT processes, as it yields 0 performance gain and may only risk triggering AC errors.
+
+</details>
+
+---
+
+<details>
 <summary><h2>🏎️ Section 7: Latency Technologies - AMD Anti-Lag 2.0 & NVIDIA Reflex)</h2></summary>
 
 ### Overview
