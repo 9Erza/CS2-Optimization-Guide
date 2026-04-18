@@ -12,7 +12,7 @@ Comprehensive guide and data-driven analysis of CS2 performance across CPU sched
 5. [📺 Section 4: Display Modes (Full Screen vs Borderless)](#-section-4-display-modes)
 6. [📏 Section 5: Resolutions Comparison](#-section-5-resolutions-comparison)
 7. [🛡️ Section 6: FACEIT Anti-Cheat Impact & Optimization](#-section-6-faceit-anti-cheat-impact)
-8. [🏎️ Section 7: Latency Technologies (Anti-Lag 2.0 / Reflex)](#-section-7-latency-technologies)
+8. [🏎️ Section 7: Latency Technologies (AMD Anti-Lag 2.0 & NVIDIA Reflex)](#-section-7-latency-technologies)
 9. [📊 Section 8: Graphics Settings Performance Impact](#-section-8-graphics-impact)
 10. [🖼️ Section 9: Visual Comparison & Visibility Guide](#-section-9-visual-comparisons)
 11. [🏆 Section 10: Summary & Recommended Settings](#-section-10-summary)
@@ -348,7 +348,7 @@ For players using modern hardware and Windows 11 (with "Optimizations for window
 ---
 
 <details>
-<summary><h2>🏎️ Section 6: Latency Technologies</h2></summary>
+<summary><h2>🏎️ Section 7: Latency Technologies - AMD Anti-Lag 2.0 & NVIDIA Reflex)</h2></summary>
 
 ### Overview
 This section analyzes the impact of AMD Anti-Lag 2.0 (the equivalent of Nvidia Reflex) on overall framerates and frametime stability. These technologies work by pacing the CPU to prevent it from running too far ahead of the GPU, which minimizes the render queue and reduces input latency. However, this synchronization process can sometimes introduce a slight performance overhead, especially in extremely high-FPS, CPU-bound scenarios.
@@ -417,7 +417,7 @@ What you gain in return is a mathematically shorter render queue and lower end-t
 
 ---
 <details>
-<summary><h2>📊 Section 5: Graphics Settings Impact</h2></summary>
+<summary><h2>📊 Section 8: Graphics Settings Perfomance Impact</h2></summary>
 
 ### Overview
 This section isolates each graphical setting to determine its exact performance cost. The baseline for every test is the absolute lowest setting possible (all Low/Disabled/None), which yields an average of **979,5 FPS**. We then raise individual settings one by one to see how heavily they impact the framerate and the 1% / 0.1% lows. 
@@ -564,7 +564,7 @@ Based on the isolated testing above, we can clearly categorize the settings by t
 ---
 
 <details>
-<summary><h2>🖼️ Section 6: Visual Comparison</h2></summary>
+<summary><h2>🖼️ Section 9: Visual Comparison & Visibility Guide</h2></summary>
 
 ### Overview
 Visual guide on how specific settings (Shadows, MSAA, Texture Filtering) affect visibility in competitive spots.
@@ -576,7 +576,7 @@ Visual guide on how specific settings (Shadows, MSAA, Texture Filtering) affect 
 ---
 
 <details>
-<summary><h2>🏆 Section 7: Summary</h2></summary>
+<summary><h2>🏆 Section 10: Summary & Recommended Optimized Settings</h2></summary>
 
 ### Final Conclusions
 * **Optimal Windows Config:** ...
