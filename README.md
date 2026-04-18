@@ -349,9 +349,67 @@ For players using modern hardware and Windows 11 (with "Optimizations for window
 <summary><h2>🏎️ Section 4: Latency Technologies</h2></summary>
 
 ### Overview
-Impact of AMD Anti-Lag 2.0 on Frametimes and Input Delay. (Future update: Nvidia Reflex).
+This section analyzes the impact of AMD Anti-Lag 2.0 (the equivalent of Nvidia Reflex) on overall framerates and frametime stability. These technologies work by pacing the CPU to prevent it from running too far ahead of the GPU, which minimizes the render queue and reduces input latency. However, this synchronization process can sometimes introduce a slight performance overhead, especially in extremely high-FPS, CPU-bound scenarios.
 
-*(Place for benchmarks and analysis)*
+---
+
+### ⚙️ Test Case 1: CS2 - Anti-Lag 2.0 Off
+
+#### 📈 FPS Results (Frames Per Second)
+
+| Metric | Run 1 | Run 2 | Run 3 | 🏆 AVERAGE |
+|---|---|---|---|---|
+| **Average FPS** | 906.0 | 908.2 | 906.4 | **906.9** |
+| **P1 (1%)** | 300.3 | 302.5 | 300.1 | **301.0** |
+| **P0.1 (0.1%)** | 267.7 | 268.4 | 270.2 | **268.8** |
+| **1% Low Average** | 282.8 | 285.4 | 283.8 | **284.0** |
+| **0.1% Low Average** | 240.0 | 243.2 | 244.7 | **242.6** |
+
+#### ⏱️ Frametime Results (ms)
+
+| Metric | Run 1 | Run 2 | Run 3 | 🏆 AVERAGE |
+|---|---|---|---|---|
+| **Average ms** | 1.1 | 1.1 | 1.1 | **1.1** |
+| **1% High Avg ms** | 3.5 | 3.3 | 3.5 | **3.5** |
+| **0.1% High Avg ms** | 4.2 | 4.1 | 4.1 | **4.1** |
+
+#### 📝 Notes & Analysis
+With latency reduction disabled, the system runs unrestricted, pushing past 900 Average FPS. This serves as our baseline to see how much overhead the Anti-Lag 2.0 algorithm introduces. 
+
+---
+
+### ⚙️ Test Case 2: CS2 - Anti-Lag 2.0 On
+
+#### 📈 FPS Results (Frames Per Second)
+
+| Metric | Run 1 | Run 2 | Run 3 | 🏆 AVERAGE |
+|---|---|---|---|---|
+| **Average FPS** | 875.7 | 869.3 | 870.8 | **871.9** |
+| **P1 (1%)** | 301.4 | 293.8 | 298.5 | **298.1** |
+| **P0.1 (0.1%)** | 267.5 | 263.7 | 269.2 | **266.0** |
+| **1% Low Average** | 285.0 | 278.3 | 283.8 | **282.1** |
+| **0.1% Low Average** | 246.1 | 240.2 | 248.7 | **244.9** |
+
+#### ⏱️ Frametime Results (ms)
+
+| Metric | Run 1 | Run 2 | Run 3 | 🏆 AVERAGE |
+|---|---|---|---|---|
+| **Average ms** | 1.1 | 1.2 | 1.1 | **1.1** |
+| **1% High Avg ms** | 3.5 | 3.6 | 3.3 | **3.5** |
+| **0.1% High Avg ms** | 4.1 | 4.2 | 4.0 | **4.1** |
+
+#### 📝 Notes & Analysis
+Enabling Anti-Lag 2.0 results in a measurable drop in maximum framerate, lowering the Average FPS from ~907 to ~872 (about a 3.8% decrease). This is expected behavior; the engine is pacing the frames rather than rendering them as fast as theoretically possible. Interestingly, the absolute lowest dips (0.1% Low Average) actually slightly *improved* from 242.6 to 244.9 FPS, indicating excellent frame pacing stability.
+
+---
+
+### 🏆 Latency Technologies Conclusion
+
+**Should you use Anti-Lag 2.0 (or Nvidia Reflex)? Yes.**
+
+While enabling Anti-Lag 2.0 costs you roughly 35 Average FPS, it is important to remember context: this is a drop from 900 FPS down to 870 FPS. At this tier of performance, the visual difference of those lost frames is non-existent. 
+
+What you gain in return is a mathematically shorter render queue and lower end-to-end system latency (click-to-photon). Furthermore, the data shows that the 1% and 0.1% frametime lows remain entirely unaffected (and even slightly more stable). For competitive play, prioritizing input responsiveness over a purely cosmeticly high Average FPS number is always the correct choice.
 
 </details>
 
