@@ -419,9 +419,145 @@ What you gain in return is a mathematically shorter render queue and lower end-t
 <summary><h2>📊 Section 5: Graphics Settings Impact</h2></summary>
 
 ### Overview
-Granular testing of every single graphics option. How many FPS do you actually gain by switching from High to Low?
+This section isolates each graphical setting to determine its exact performance cost. The baseline for every test is the absolute lowest setting possible (all Low/Disabled), which yields an average of **979.5 FPS**. We then raise individual settings one by one to see how heavily they impact the framerate and the 1% / 0.1% lows. 
 
-*(Place for benchmarks and analysis)*
+*(Note: We are purely analyzing performance impact and technical behavior here. Visual comparisons are covered in Section 6).*
+
+---
+
+### Multisampling Anti-Aliasing Mode
+| Setting | Avg FPS | P1 FPS | 1% Low Avg | P0.1 FPS | 0.1% Low Avg |
+|---|---|---|---|---|---|
+| None | 979.5 | 301.5 | 284.7 | 267.1 | 249.3 |
+| CMAA2 | 968.3 | 303.3 | 288.0 | 273.3 | 253.8 |
+| 2x msaa | 941.0 | 300.5 | 284.8 | 270.3 | 248.3 |
+| 4x msaa | 924.7 | 297.6 | 282.7 | 267.0 | 248.3 |
+| 8x msaa | 865.6 | 300.2 | 284.2 | 268.1 | 245.5 |
+
+**Technical Impact Analysis:** MSAA (Multisample Anti-Aliasing) physically renders the geometry edges at a higher resolution to eliminate jagged lines. Because of this, it is one of the heaviest settings in the game. Scaling up to 8x MSAA introduces a massive performance penalty, dropping the average framerate by over 110 FPS compared to the baseline. 
+CMAA2 (Conservative Morphological Anti-Aliasing), on the other hand, is a post-processing filter. It smooths the final image after it has been rendered, meaning it has almost zero negative impact, costing only ~11 FPS while maintaining extremely stable lows.
+
+---
+
+### Boost Player Contrast
+| Setting | Avg FPS | P1 FPS | 1% Low Avg | P0.1 FPS | 0.1% Low Avg |
+|---|---|---|---|---|---|
+| Disabled | 979.5 | 301.5 | 284.7 | 267.1 | 249.3 |
+| Enabled | 978.6 | 308.0 | 292.0 | 275.9 | 257.5 |
+
+**Technical Impact Analysis:** This setting applies a post-processing edge-detect filter that generates a subtle halo around character models to make them stand out against dark or complex backgrounds. Because it is a lightweight 2D screen-space effect, it has virtually no negative impact on the average FPS (a difference of less than 1 FPS). Interestingly, enabling it actually shows a slight positive impact on the 1% and 0.1% lows, stabilizing the frame pacing.
+
+---
+
+### Global Shadow Quality
+| Setting | Avg FPS | P1 FPS | 1% Low Avg | P0.1 FPS | 0.1% Low Avg |
+|---|---|---|---|---|---|
+| Low | 979.5 | 301.5 | 284.7 | 267.1 | 249.3 |
+| Medium | 961.3 | 302.2 | 287.1 | 270.8 | 250.9 |
+| High | 932.3 | 297.0 | 281.7 | 266.2 | 244.9 |
+| Very High | 879.3 | 301.1 | 284.3 | 266.8 | 248.4 |
+
+**Technical Impact Analysis:** This setting dictates the resolution of shadow maps, the distance at which cascades are rendered, and whether dynamic sun shadows are drawn for player models across the map. This is a major performance sink. Pushing shadows to "Very High" forces the engine to render extremely crisp shadows from far away, introducing a severe penalty that strips exactly 100 FPS from the average compared to "Low".
+
+---
+
+### Dynamic Shadows
+| Setting | Avg FPS | P1 FPS | 1% Low Avg | P0.1 FPS | 0.1% Low Avg |
+|---|---|---|---|---|---|
+| Sun Only | 979.5 | 301.5 | 284.7 | 267.1 | 249.3 |
+| All | 973.3 | 301.6 | 286.3 | 270.9 | 252.2 |
+
+**Technical Impact Analysis:** This controls which light sources allow entities to cast shadows. "Sun Only" restricts shadows to the main global lighting of the map. "All" allows local lights (such as lamps, fires, or muzzle flashes) to also generate dynamic shadows from players and grenades. The performance difference is minimal, costing merely ~6 FPS on the average while keeping the 1% and 0.1% lows completely intact.
+
+---
+
+### Model / Texture Detail
+| Setting | Avg FPS | P1 FPS | 1% Low Avg | P0.1 FPS | 0.1% Low Avg |
+|---|---|---|---|---|---|
+| Low | 979.5 | 301.5 | 284.7 | 267.1 | 249.3 |
+| medium | 949.8 | 307.9 | 291.6 | 276.0 | 252.7 |
+| high | 926.1 | 304.4 | 287.5 | 269.7 | 249.0 |
+
+**Technical Impact Analysis:** This setting determines the mipmap level (resolution) of textures loaded into the GPU's VRAM, as well as the geometric complexity of certain world objects. Increasing texture complexity carries a moderate performance cost. Moving to "High" increases VRAM utilization and drops the average framerate by roughly 53 FPS compared to the baseline.
+
+---
+
+### Texture Filtering Mode
+| Setting | Avg FPS | P1 FPS | 1% Low Avg | P0.1 FPS | 0.1% Low Avg |
+|---|---|---|---|---|---|
+| Bilinear | 979.5 | 301.5 | 284.7 | 267.1 | 249.3 |
+| Trilinear | 953.5 | 303.3 | 266.1 | 272.9 | 146.8 |
+| Anisotropic 2x | 975.5 | 309.5 | 294.3 | 279.0 | 257.5 |
+| Anisotropic 4x | 964.4 | 298.2 | 283.9 | 269.7 | 250.6 |
+| Anisotropic 8x | 971.7 | 300.4 | 284.5 | 270.8 | 247.7 |
+| Anisotropic 16x | 970.7 | 301.3 | 285.4 | 270.0 | 246.4 |
+
+**Technical Impact Analysis:** Filtering determines how textures look when viewed at sharp, oblique angles (like looking far down a long wall or the floor). Bilinear is the most basic and blurry. Anisotropic Filtering (AF) mathematically calculates the texture perspective, keeping it sharp at a distance, and is essentially "free" on modern GPU architectures, costing less than 10 FPS for the maximum 16x setting. 
+However, "Trilinear" filtering introduces a severe engine anomaly in CS2. It heavily degrades the 0.1% Low Average (cratering down to 146.8 FPS), causing massive micro-stuttering. 
+
+---
+
+### Shader Detail
+| Setting | Avg FPS | P1 FPS | 1% Low Avg | P0.1 FPS | 0.1% Low Avg |
+|---|---|---|---|---|---|
+| Low | 979.5 | 301.5 | 284.7 | 267.1 | 249.3 |
+| High | 964.9 | 300.5 | 285.3 | 270.2 | 249.9 |
+
+**Technical Impact Analysis:** Shader Detail dictates the complexity of surface lighting, material reflections (such as shiny weapon skins), and minor weather/environmental effects. Despite the visual upgrade to weapon models, "High" has a surprisingly low impact on performance, dropping the average by only ~15 FPS without noticeably affecting the 1% or 0.1% lows.
+
+---
+
+### Particle Detail
+| Setting | Avg FPS | P1 FPS | 1% Low Avg | P0.1 FPS | 0.1% Low Avg |
+|---|---|---|---|---|---|
+| Low | 979.5 | 301.5 | 284.7 | 267.1 | 249.3 |
+| Medium | 941.4 | 303.7 | 288.7 | 274.1 | 254.6 |
+| High | 940.3 | 300.3 | 278.2 | 253.5 | 229.0 |
+| Very High | 885.8 | 292.8 | 271.8 | 246.6 | 227.9 |
+
+**Technical Impact Analysis:** This controls the resolution, density, and rendering volume of particle effects like smoke grenades, molotov flames, and HE explosions. It places a heavy load on the CPU and GPU bandwidth. Pushing it to "Very High" results in a massive 93 FPS drop in the average. Furthermore, both "High" and "Very High" introduce a noticeable negative impact on the 0.1% Lows, significantly reducing frame stability during intense executes with multiple grenades.
+
+---
+
+### Ambient Occlusion
+| Setting | Avg FPS | P1 FPS | 1% Low Avg | P0.1 FPS | 0.1% Low Avg |
+|---|---|---|---|---|---|
+| Disabled | 979.5 | 301.5 | 284.7 | 267.1 | 249.3 |
+| Medium | 970.6 | 303.9 | 288.7 | 273.5 | 253.0 |
+| High | 971.6 | 303.7 | 288.3 | 273.4 | 251.7 |
+
+**Technical Impact Analysis:** Ambient Occlusion (AO) adds realistic soft contact shadows in corners, crevices, and areas where objects meet, giving the map more depth. Because CS2 uses an optimized screen-space occlusion technique, it has a very minor performance penalty. Both Medium and High settings cost less than 10 FPS on average and do not disturb the frametime stability.
+
+---
+
+### High Dynamic Range
+| Setting | Avg FPS | P1 FPS | 1% Low Avg | P0.1 FPS | 0.1% Low Avg |
+|---|---|---|---|---|---|
+| Performance | 979.5 | 301.5 | 284.7 | 267.1 | 249.3 |
+| High | 968.2 | 303.6 | 288.3 | 274.6 | 252.1 |
+
+**Technical Impact Analysis:** HDR settings in CS2 do not refer to HDR monitor output, but rather the internal mathematical precision of color blending and bloom effects. Changing HDR from "Performance" (lower 16-bit float precision) to "High" (32-bit float precision) carries an almost negligible cost on modern GPUs, lowering the average by just ~11 FPS while removing color banding in the skybox.
+
+---
+
+### 📊 Performance Impact Summary
+
+Based on the isolated testing above, we can clearly categorize the settings by their performance cost.
+
+**🔴 Heaviest Performance Hits (Largest FPS Drops):**
+* **8x MSAA:** Over -110 Average FPS penalty. Heavy GPU geometry load.
+* **Global Shadow Quality (Very High):** Over -100 Average FPS penalty.
+* **Particle Detail (Very High):** Over -90 Average FPS penalty, with significant degradation to 0.1% Lows.
+* **Model / Texture Detail (High):** Moderate penalty of ~50 Average FPS.
+
+**🟢 Lowest Performance Impact ("Free" or Cheap Settings):**
+* **Boost Player Contrast:** Zero FPS penalty; slightly stabilizes frametimes.
+* **Texture Filtering (Anisotropic 16x):** Less than -10 FPS penalty. *(Note: Trilinear causes severe micro-stutter and massive 0.1% low drops).*
+* **Dynamic Shadows (All):** Less than -10 FPS penalty.
+* **Ambient Occlusion (High):** Less than -10 FPS penalty.
+* **High Dynamic Range (High):** ~11 FPS penalty.
+* **Anti-Aliasing (CMAA2):** ~11 FPS penalty.
+* **Shader Detail (High):** ~15 FPS penalty.
 
 </details>
 
