@@ -6,7 +6,7 @@ Comprehensive guide and data-driven analysis of CS2 performance across CPU sched
 
 ## 📌 Table of Contents
 1. [🔬 Methodology & Test Environment](#-methodology--test-environment)
-2. [⚙️ Section 1: CPU Scheduling (Affinity vs CPU Sets)](#-section-1-cpu-scheduling)
+2. [⚙️ Section 1: CPU Scheduling (Affinity & CPU Sets)](#-section-1-cpu-scheduling)
 3. [🖥️ Section 2: Windows Settings & Optimizations](#-section-2-windows-settings)
 4. [🚀 Section 3: CS2 Launch Options](#-section-3-launch-options)
 5. [📺 Section 4: Display Modes (Full Screen vs Borderless)](#-section-4-display-modes)
@@ -64,7 +64,7 @@ The following settings were used for **all tests** (except Section 5, where sett
 ---
 
 <details>
-<summary><h2>⚙️ Section 1: CPU Scheduling (Affinity vs CPU Sets)</h2></summary>
+<summary><h2>⚙️ Section 1: CPU Scheduling (Affinity & CPU Sets)</h2></summary>
 
 ### Overview
 This section explores the performance impact of CPU thread management on the Ryzen 7 7800X3D. We compare the baseline (STOCK) performance against two different methods of thread restriction:
@@ -264,7 +264,7 @@ While Test Case 4 (Hard Affinity) peaked slightly higher at 899 FPS compared to 
 ---
 
 <details>
-<summary><h2>🖥️ Section 2: Windows Settings</h2></summary>
+<summary><h2>🖥️ Section 2: Windows Settings & Optimizations</h2></summary>
 
 ### Overview
 Testing the impact of system-level features.
@@ -280,7 +280,7 @@ Testing the impact of system-level features.
 ---
 
 <details>
-<summary><h2>📺 Section 3: Display Modes - Fullscreen vs Borderless</h2></summary>
+<summary><h2>📺 Section 4: Display Modes - Fullscreen vs Borderless</h2></summary>
 
 ### Overview
 Testing the performance difference between traditional Exclusive Fullscreen and Borderless Windowed modes. Historically, Fullscreen was mandatory for minimal input lag and maximum FPS. However, modern Windows 11 features ("Optimizations for windowed games") aim to close this gap, allowing for seamless alt-tabbing without performance penalties.
@@ -348,7 +348,7 @@ For players using modern hardware and Windows 11 (with "Optimizations for window
 ---
 
 <details>
-<summary><h2>🏎️ Section 4: Latency Technologies</h2></summary>
+<summary><h2>🏎️ Section 6: Latency Technologies</h2></summary>
 
 ### Overview
 This section analyzes the impact of AMD Anti-Lag 2.0 (the equivalent of Nvidia Reflex) on overall framerates and frametime stability. These technologies work by pacing the CPU to prevent it from running too far ahead of the GPU, which minimizes the render queue and reduces input latency. However, this synchronization process can sometimes introduce a slight performance overhead, especially in extremely high-FPS, CPU-bound scenarios.
