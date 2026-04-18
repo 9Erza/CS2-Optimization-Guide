@@ -278,12 +278,68 @@ Testing the impact of system-level features.
 ---
 
 <details>
-<summary><h2>📺 Section 3: Display Modes</h2></summary>
+<summary><h2>📺 Section 3: Display Modes - Fullscreen vs Borderless</h2></summary>
 
 ### Overview
-Full Screen vs. Borderless Windowed. Does the modern Windows 11 optimization for windowed games close the gap?
+Testing the performance difference between traditional Exclusive Fullscreen and Borderless Windowed modes. Historically, Fullscreen was mandatory for minimal input lag and maximum FPS. However, modern Windows 11 features ("Optimizations for windowed games") aim to close this gap, allowing for seamless alt-tabbing without performance penalties.
 
-*(Place for benchmarks and analysis)*
+---
+
+### ⚙️ Test Case 1: CS2 - Borderless Windowed
+
+#### 📈 FPS Results (Frames Per Second)
+
+| Metric / Parametr | Run 1 | Run 2 | Run 3 | 🏆 AVERAGE |
+|---|---|---|---|---|
+| **Average FPS** | 900.7 | 901.5 | 895.0 | **899.1** |
+| **P1 (1%)** | 300.5 | 303.6 | 297.5 | **300.5** |
+| **P0.1 (0.1%)** | 269.4 | 272.1 | 266.3 | **269.2** |
+| **1% Low Average** | 284.6 | 287.5 | 282.6 | **284.8** |
+| **0.1% Low Average** | 246.7 | 248.4 | 247.6 | **247.4** |
+
+#### ⏱️ Frametime Results (ms)
+
+| Metric / Parametr | Run 1 | Run 2 | Run 3 | 🏆 AVERAGE |
+|---|---|---|---|---|
+| **Average ms** | 1.1 | 1.1 | 1.1 | **1.1** |
+| **1% High Avg ms** | 3.5 | 3.5 | 3.5 | **3.5** |
+| **0.1% High Avg ms** | 4.1 | 4.0 | 4.0 | **4.0** |
+
+#### 📝 Notes & Analysis
+Running the game in Borderless mode delivers exceptional performance, maintaining nearly 900 Average FPS. Surprisingly, the 0.1% Low Average is incredibly stable at ~247 FPS, showing that modern OS window management does not introduce significant micro-stutter on this hardware.
+
+---
+
+### ⚙️ Test Case 2: CS2 - Fullscreen
+
+#### 📈 FPS Results (Frames Per Second)
+
+| Metric / Parametr | Run 1 | Run 2 | Run 3 | 🏆 AVERAGE |
+|---|---|---|---|---|
+| **Average FPS** | 906.0 | 908.2 | 906.4 | **906.9** |
+| **P1 (1%)** | 300.3 | 302.5 | 300.1 | **301.1** |
+| **P0.1 (0.1%)** | 267.7 | 268.4 | 270.2 | **268.4** |
+| **1% Low Average** | 282.8 | 285.4 | 283.8 | **284.0** |
+| **0.1% Low Average** | 240.0 | 243.2 | 244.7 | **242.7** |
+
+#### ⏱️ Frametime Results (ms)
+
+| Metric / Parametr | Run 1 | Run 2 | Run 3 | 🏆 AVERAGE |
+|---|---|---|---|---|
+| **Average ms** | 1.1 | 1.1 | 1.1 | **1.1** |
+| **1% High Avg ms** | 3.5 | 3.3 | 3.5 | **3.4** |
+| **0.1% High Avg ms** | 4.2 | 4.1 | 4.1 | **4.1** |
+
+#### 📝 Notes & Analysis
+Traditional Exclusive Fullscreen provides a minor boost to peak Average FPS (~907 FPS vs ~899 FPS in Borderless). However, the extreme lows (0.1% Low Average) are marginally lower than in Borderless mode (~243 FPS vs ~247 FPS). The frametime variance is virtually identical.
+
+---
+
+### 🏆 Display Modes Conclusion
+
+**Fullscreen vs Borderless is practically a tie on Windows 11.** While **Fullscreen** yields a strictly mathematical advantage in maximum Average FPS (+8 FPS), **Borderless** actually provides marginally better and tighter 0.1% Lows (+5 FPS). 
+
+For players using modern hardware and Windows 11 (with "Optimizations for windowed games" enabled), **Borderless Windowed** is highly recommended if you frequently Alt-Tab. You are losing less than 1% of total performance while gaining massive quality-of-life benefits. Purists seeking the absolute highest theoretical peak can stick to Fullscreen, but the difference is imperceptible in actual gameplay.
 
 </details>
 
