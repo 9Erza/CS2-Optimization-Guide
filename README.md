@@ -1117,10 +1117,42 @@ After rigorous testing across multiple system layers, the data paints a very cle
 
 Here is the definitive summary of how to optimize your setup:
 
-* **Optimal CPU Config:** The biggest performance gains come from intelligent thread scheduling. For top-tier CPUs like the 7800X3D, using **Windows CPU Sets** to disable SMT and park Core 0 yields massive improvements to 1% and 0.1% lows. Avoid using Hard Affinity, as it clashes with kernel-level software like the FACEIT Anti-Cheat. 
-* **Optimal Windows Config:** Let the modern OS do its job. Keep **Game Mode** and **HAGS** Enabled. Ensure **Core Isolation (VBS)** is Disabled, as it introduces severe virtualization overhead. Finally, stick to the **Balanced Power Plan** (or a properly tweaked custom plan like the Erza Ultimate Plan) for the best frametime stability.
+* **Optimal CPU Config:** The biggest performance gains come from intelligent thread scheduling. To maximize stability and 1% lows, you should **disable Hyper-Threading/SMT** (HT for Intel, SMT for AMD) and **uncheck Core 0** to isolate the game from heavy OS background tasks. 
+  * *Tools:* You can achieve this using my hobbyist tool, [Process Core Optimizer](https://github.com/9Erza/ProcessCoreOptimizer), or a proven commercial solution like **Process Lasso**.
+  * *Method:* Always use **Windows CPU Sets** instead of Hard Affinity. CPU Sets act as a "soft" rule for the Windows scheduler, which prevents game crashes and input stutter when playing on aggressive kernel-level anti-cheats (like FACEIT AC) that often block hard affinity masks.
 * **Optimal Graphics Config:** Competitive CS2 is about balancing peak FPS with perfect visibility. Most settings should be turned down to minimize visual clutter and GPU load. However, you *must* keep **Dynamic Shadows on All**, **MSAA on 2X**, and **HDR on High** to prevent massive visibility disadvantages. 
-* **Launch Options & Latency Tech:** Keep your launch options clean (no legacy `-high` or thread commands). When it comes to **NVIDIA Reflex / AMD Anti-Lag 2.0**, the choice is heavily based on personal preference and game feel. Technologically, these features pace the CPU to prevent it from running ahead of the GPU, reducing the render queue and theoretically minimizing click-to-photon input latency. However, they carry a significant FPS penalty, which can cause noticeable stuttering on weaker systems. While technically a "YES" for latency reduction, it is a firm "NO" for raw FPS. Observing the current meta, the vast majority of top professional CS2 players keep these technologies **Disabled**. Since I currently lack the physical hardware (like LDAT tools) to measure exact end-to-end latency, I cannot give a definitive verdict yet. I will update this guide once I have the tools to verify their exact impact, but for now: test it yourself, and if in doubt, leave it disabled.
+* **Launch Options:** Keep your launch options clean. Do not use legacy commands like `-high` or thread modifiers. Only use utility commands that you actually need (e.g., `-novid` to skip the intro video, `-console` to enable the developer console, or `-allow_third_party_software` if you use recording tools like OBS).
+* **NVIDIA Reflex / AMD Anti-Lag 2.0:** The choice to use these latency-reduction tools is heavily based on personal preference and game feel. Technologically, these features pace the CPU to prevent it from running ahead of the GPU, reducing the render queue and theoretically minimizing click-to-photon input latency. However, they carry a significant FPS penalty, which can cause noticeable stuttering on weaker systems. While technically a "YES" for latency reduction, it is a firm "NO" for raw FPS. Observing the current meta, the vast majority of top professional CS2 players keep these technologies **Disabled**. Since I currently lack the physical hardware (like LDAT tools) to measure exact end-to-end latency, I cannot give a definitive verdict yet. I will update this guide once I have the tools to verify their exact impact, but for now: test it yourself, and if in doubt, leave it disabled.
+
+---
+
+### Optimal Windows Config
+Let the modern OS do its job. For visual learners, here is the quick checklist of how your Windows 11 system should be configured for CS2:
+
+| Windows Feature | Recommended State |
+| :--- | :--- |
+| **Hardware-Accelerated GPU Scheduling (HAGS)** | **Enabled** ✅ |
+| **Windows Game Mode** | **Enabled** ✅ |
+| **Windows Power Plan** | **Balanced** *(or tweaked by me Ultimate Perfomance)* 🔋 |
+| **Core Isolation (Memory Integrity / VBS)** | **Disabled** ❌ |
+
+<details>
+<summary>🛠️ <strong>How to change these Windows settings (Click to expand)</strong></summary>
+
+* **How to Enable HAGS:**
+    1. Press `Windows Key`, type **Graphics settings**, and press Enter.
+    2. Click on **Change default graphics settings**.
+    3. Toggle **Hardware-accelerated GPU scheduling** to **On**. (Requires a PC restart).
+* **How to Enable Game Mode:**
+    1. Press `Windows Key`, type **Game Mode settings**, and press Enter.
+    2. Toggle **Game Mode** to **On**.
+* **How to Change Power Plan:**
+    1. Press `Windows Key`, type **Choose a power plan**, and press Enter.
+    2. Select **Balanced**. *(Note: The modern Windows 11 scheduler handles frequency scaling best on Balanced for most CPUs).*
+* **How to Disable Core Isolation (Memory Integrity):**
+    1. Press `Windows Key`, type **Core Isolation**, and press Enter.
+    2. Toggle **Memory integrity** to **Off**. (Requires a PC restart). *Note: This disables a virtualization security layer. While perfectly fine for a personal gaming PC, be aware of what this feature does before disabling it.*
+</details>
 
 ---
 
@@ -1129,7 +1161,7 @@ Below is the final, fully optimized configuration derived directly from the benc
 
 | Category | Setting | Recommended Value |
 | :--- | :--- | :--- |
-| **Video** | Resolution | **1280x960** (Performance) or **1920x1080** (Clarity) |
+| **Video** | Resolution | **1280x960** or **1920x1080** |
 | **Video** | Display Mode | **Borderless Windowed** *(If Windows 11 optimizations are ON)* |
 | **Advanced Video** | Boost Player Contrast | **Enabled** |
 | **Advanced Video** | Wait for Vertical Sync | **Disabled** |
