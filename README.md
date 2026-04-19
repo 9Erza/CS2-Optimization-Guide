@@ -917,15 +917,194 @@ Based on the isolated testing above, we can clearly categorize the settings by t
 * **Shader Detail (High):** ~15 FPS penalty.
 
 </details>
+
 ---
 
 <details>
 <summary><h2>🖼️ Section 9: Visual Comparison & Visibility Guide</h2></summary>
 
 ### Overview
-Visual guide on how specific settings (Shadows, MSAA, Texture Filtering) affect visibility in competitive spots.
+In a competitive game like Counter-Strike 2, graphics settings are not about making the game look pretty—they are about maximizing frame rates and ensuring peak visibility. This section breaks down how specific settings affect your ability to spot enemies, debunking several long-standing community myths along the way.
 
-*(Place for comparison images and descriptions)*
+Below is a detailed breakdown of each setting, complete with visual comparisons. 
+
+---
+
+### Boost Player Contrast
+This setting applies a subtle post-processing filter that helps separate character models from complex or dark backgrounds. It is largely a matter of personal preference, but it undeniably helps you spot enemies in poorly lit areas. Best of all, it has absolutely zero negative impact on your FPS. 
+* **🏆 Recommended Setting:** Enabled
+
+<details>
+<summary>📸 <strong>Click to view screenshot comparison</strong></summary>
+
+**Disabled:**
+![Boost Player Contrast Disabled](https://raw.githubusercontent.com/9Erza/CS2-Optimization-Guide/main/images/advanced-video-settings/boost-player-contrast/boost%20player%20contrast%20disabled.jpg)
+
+**Enabled:**
+![Boost Player Contrast Enabled](https://raw.githubusercontent.com/9Erza/CS2-Optimization-Guide/main/images/advanced-video-settings/boost-player-contrast/boost%20player%20contrast%20enabled.jpg)
+</details>
+
+---
+
+### Multisampling Anti-Aliasing Mode
+This is one of the most taxing settings in the game. While setting it to "None" yields the highest raw FPS, we are forced to use MSAA for gameplay reasons. Without MSAA, visibility is severely compromised in specific scenarios (for example, trying to spot an enemy standing behind the metal catwalk grates on de_Vertigo). 
+
+CMAA2 should be avoided as it provides no tangible benefits. While MSAA is mandatory for visual clarity, pushing it to 4x or 8x MSAA offers diminishing returns and heavily tanks your framerate without giving you any extra competitive advantage.
+* **🏆 Recommended Setting:** 2X MSAA
+
+<details>
+<summary>📸 <strong>Click to view screenshot comparison</strong></summary>
+
+**None:**
+![None](https://raw.githubusercontent.com/9Erza/CS2-Optimization-Guide/main/images/advanced-video-settings/multisampling-anti-aliasing-mode/multisampling%20none.jpg)
+**CMAA2:**
+![CMAA2](https://raw.githubusercontent.com/9Erza/CS2-Optimization-Guide/main/images/advanced-video-settings/multisampling-anti-aliasing-mode/multisampling%20cmaa2.jpg)
+**2x MSAA:**
+![2x MSAA](https://raw.githubusercontent.com/9Erza/CS2-Optimization-Guide/main/images/advanced-video-settings/multisampling-anti-aliasing-mode/multisampling%202x%20msaa.jpg)
+**8x MSAA:**
+![8x MSAA](https://raw.githubusercontent.com/9Erza/CS2-Optimization-Guide/main/images/advanced-video-settings/multisampling-anti-aliasing-mode/multisampling%208x%20msaa.jpg)
+</details>
+
+---
+
+### Global Shadow Quality
+This setting is a massive FPS drain. There is a persistent myth from the CS:GO era and the early CS2 beta that you must play on "High" to see enemy shadows correctly. **Valve has fixed this.** Setting this to "Low" renders the exact same critical player shadows as "Very High." The only difference is aesthetic resolution. "Very High" will devastate your framerate even on powerful modern GPUs.
+* **🏆 Recommended Setting:** Low
+
+<details>
+<summary>📸 <strong>Click to view screenshot comparison</strong></summary>
+
+**Low:**
+![Global Shadow Low](https://raw.githubusercontent.com/9Erza/CS2-Optimization-Guide/main/images/advanced-video-settings/global-shadow-quality/global%20shadow%20quality%20low.jpg)
+
+**Very High:**
+![Global Shadow Very High](https://raw.githubusercontent.com/9Erza/CS2-Optimization-Guide/main/images/advanced-video-settings/global-shadow-quality/global%20shadow%20quality%20very%20high.jpg)
+</details>
+
+---
+
+### Dynamic Shadows
+Unlike Global Shadow Quality, this setting is critical for competitive play. If you set this to "Sun Only," the game will stop rendering shadows cast by local light sources (like lamps or fires). This means an enemy could be standing right around a corner, and you will not see their shadow. Setting it to "All" ensures you always receive this vital visual information. 
+* **🏆 Recommended Setting:** All
+
+<details>
+<summary>📸 <strong>Click to view screenshot comparison</strong></summary>
+
+**Sun Only:**
+![Dynamic Shadow Sun Only](https://raw.githubusercontent.com/9Erza/CS2-Optimization-Guide/main/images/advanced-video-settings/dynamic-shadows/dynamic%20shadow%20sun%20only.jpg)
+
+**All:**
+![Dynamic Shadow All](https://raw.githubusercontent.com/9Erza/CS2-Optimization-Guide/main/images/advanced-video-settings/dynamic-shadows/dynamic%20shadow%20all.jpg)
+</details>
+
+---
+
+### Model / Texture Detail
+Despite what you might expect, this setting has a noticeable impact on performance, especially on older GPUs (though still measurable on high-end hardware). Increasing this to High provides absolutely zero competitive advantage. It purely enhances the visual fidelity of walls and objects. In a competitive environment, visual distractions should be minimized.
+* **🏆 Recommended Setting:** Low
+
+<details>
+<summary>📸 <strong>Click to view screenshot comparison</strong></summary>
+
+**Low:**
+![Model Texture Low](https://raw.githubusercontent.com/9Erza/CS2-Optimization-Guide/main/images/advanced-video-settings/model-texture-detail/model%20texture%20low.jpg)
+
+**High:**
+![Model Texture High](https://raw.githubusercontent.com/9Erza/CS2-Optimization-Guide/main/images/advanced-video-settings/model-texture-detail/model%20texture%20high.jpg)
+</details>
+
+---
+
+### Texture Filtering Mode
+The performance difference between Bilinear (979 Avg FPS) and Anisotropic 16x (971 Avg FPS) is incredibly small. However, the visual clarity difference is massive. 
+
+Using Bilinear severely blurs textures when viewed at sharp angles. This makes distant enemies (such as a head peeking over a box) very difficult to see. Anisotropic 2x provides a massive leap in visual clarity at a distance with almost no FPS cost. If you have a powerful PC, you can confidently use Anisotropic 16x without losing any noticeable performance. Players on very low, stretched resolutions (like 1024x768) should especially consider using 16x to regain some much-needed texture clarity. That being said, for the vast majority of setups, Anisotropic 2x remains the perfect sweet spot for balancing maximum visibility and top-tier frame rates. *(Note: Completely avoid Trilinear due to stutter issues).*
+* **🏆 Recommended Setting:** Anisotropic 2X (or 16X for high-end PCs / low resolutions)
+
+
+<details>
+<summary>📸 <strong>Click to view screenshot comparison</strong></summary>
+
+**Bilinear:**
+![Bilinear](https://raw.githubusercontent.com/9Erza/CS2-Optimization-Guide/main/images/advanced-video-settings/texture-filtering-mode/tex%20bilinear.jpg)
+**Anisotropic 2x:**
+![Anisotropic 2x](https://raw.githubusercontent.com/9Erza/CS2-Optimization-Guide/main/images/advanced-video-settings/texture-filtering-mode/tex%202x.jpg)
+**Anisotropic 16x:**
+![Anisotropic 16x](https://raw.githubusercontent.com/9Erza/CS2-Optimization-Guide/main/images/advanced-video-settings/texture-filtering-mode/tex%2016x.jpg)
+</details>
+
+---
+
+### Shader Detail
+This is a strictly visual setting. In CS:GO, Shader Detail actually affected how well you could see through molotov flames, but that is no longer the case in CS2. Turning this to High will cost you frames for no gameplay benefit. The only reason to raise this setting is if you want your weapon skins to look shinier and more detailed. For pure competitive performance, keep it low.
+* **🏆 Recommended Setting:** Low
+
+<details>
+<summary>📸 <strong>Click to view screenshot comparison</strong></summary>
+
+**Low:**
+![Shader Low](https://raw.githubusercontent.com/9Erza/CS2-Optimization-Guide/main/images/advanced-video-settings/shader-detail/shader%20detail%20low.jpg)
+
+**High:**
+![Shader High](https://raw.githubusercontent.com/9Erza/CS2-Optimization-Guide/main/images/advanced-video-settings/shader-detail/shader%20detail%20high.jpg)
+</details>
+
+---
+
+### Particle Detail
+This is a critical setting for optimization. It eats a staggering amount of framerate—dropping nearly 100 FPS on average when moved from Low to Very High. 
+
+There are rumors that higher Particle Detail makes it easier to see through HE grenade explosions or molotovs. Extensive testing proves this false. Higher settings provide zero visibility advantages; they merely add extra debris and fluff that clutter your screen and drastically reduce your FPS.
+* **🏆 Recommended Setting:** Low
+
+<details>
+<summary>📸 <strong>Click to view screenshot comparison</strong></summary>
+
+**Low:**
+![Particle Low](https://raw.githubusercontent.com/9Erza/CS2-Optimization-Guide/main/images/advanced-video-settings/particle-detail/particle%20low.jpg)
+**Medium:**
+![Particle Medium](https://raw.githubusercontent.com/9Erza/CS2-Optimization-Guide/main/images/advanced-video-settings/particle-detail/particle%20medium.jpg)
+**Very High:**
+![Particle Very High](https://raw.githubusercontent.com/9Erza/CS2-Optimization-Guide/main/images/advanced-video-settings/particle-detail/particle%20very%20high.jpg)
+</details>
+
+---
+
+### Ambient Occlusion
+Here is another debunked myth. During the early days of CS2, playing with AO enabled would sometimes cause enemy shadows to leak through walls before they peeked. Valve patched this exploit long ago. Today, AO is purely a cosmetic effect that adds soft contact shadows to corners. Because it serves no competitive purpose, it should be turned off.
+* **🏆 Recommended Setting:** Disabled
+
+<details>
+<summary>📸 <strong>Click to view screenshot comparison</strong></summary>
+
+**Disabled:**
+![Ambient Occlusion Off](https://raw.githubusercontent.com/9Erza/CS2-Optimization-Guide/main/images/advanced-video-settings/ambient-occlusion/ambient%20occlusion%20off.jpg)
+
+**Enabled:**
+![Ambient Occlusion On](https://raw.githubusercontent.com/9Erza/CS2-Optimization-Guide/main/images/advanced-video-settings/ambient-occlusion/ambient%20occlusion%20on.jpg)
+</details>
+
+---
+
+### High Dynamic Range
+*Note: This setting does not refer to your physical monitor's HDR capabilities, but rather the game engine's internal mathematical color precision.* This setting has a very minor impact on performance. However, setting it to "Performance" introduces an unpleasant film grain/banding effect to the image, which can subtly hinder visibility. The FPS cost of "High" is negligible, and it provides a much cleaner, sharper image without the grain.
+* **🏆 Recommended Setting:** High
+
+<details>
+<summary>📸 <strong>Click to view screenshot comparison</strong></summary>
+
+**Performance (Off):**
+![HDR Off](https://raw.githubusercontent.com/9Erza/CS2-Optimization-Guide/main/images/advanced-video-settings/high-dynamic-range/hdr%20off.jpg)
+
+**High (On):**
+![HDR On](https://raw.githubusercontent.com/9Erza/CS2-Optimization-Guide/main/images/advanced-video-settings/high-dynamic-range/hdr%20on.jpg)
+</details>
+
+---
+
+### FidelityFX Super Resolution
+FSR functions by rendering the game at a lower resolution and artificially upscaling it to fit your screen. CS2 currently uses an outdated FSR 1 implementation. It looks terrible, makes the game incredibly blurry, and introduces noticeable input lag. It provides absolutely no value for competitive play and should never be used.
+* **🏆 Recommended Setting:** Disabled (Highest Quality)
 
 </details>
 
