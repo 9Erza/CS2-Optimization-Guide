@@ -267,13 +267,110 @@ While Test Case 4 (Hard Affinity) peaked slightly higher at 899 FPS compared to 
 <summary><h2>🖥️ Section 2: Windows Settings & Optimizations</h2></summary>
 
 ### Overview
-Testing the impact of system-level features.
-* Windows Game Mode (On vs Off)
-* Core Isolation / VBS
-* Hardware-Accelerated GPU Scheduling (HAGS)
-* Power Plans (Balanced vs High Performance)
+This section examines the performance impact of built-in Windows 11 system features: Hardware-Accelerated GPU Scheduling (HAGS), Windows Game Mode, and Core Isolation (Virtualization-Based Security / Memory Integrity). We will compare each feature in an ON vs OFF state to determine the optimal configuration for raw frame throughput and frametime stability.
 
-*(Place for benchmarks and analysis)*
+---
+
+### ⚙️ CS2: HAGS ON
+
+#### 📈 FPS Results (Frames Per Second)
+
+| Metric | Run 1 | Run 2 | Run 3 | 🏆 AVERAGE |
+|---|---|---|---|---|
+| **Average FPS** | 900.1 | 898.7 | 901.5 | **900.1** |
+| **P1 (1%)** | 304.0 | 303.5 | 305.0 | **304.1** |
+| **P0.1 (0.1%)** | 272.8 | 270.8 | 274.9 | **272.6** |
+| **1% Low Average** | 287.7 | 286.6 | 289.2 | **287.8** |
+| **0.1% Low Average** | 249.1 | 243.3 | 252.8 | **248.2** |
+
+---
+
+### ⚙️ CS2: HAGS OFF
+
+#### 📈 FPS Results (Frames Per Second)
+
+| Metric | Run 1 | Run 2 | Run 3 | 🏆 AVERAGE |
+|---|---|---|---|---|
+| **Average FPS** | 897.6 | 886.6 | 896.7 | **893.6** |
+| **P1 (1%)** | 302.0 | 299.9 | 302.5 | **301.5** |
+| **P0.1 (0.1%)** | 269.0 | 267.4 | 271.9 | **268.9** |
+| **1% Low Average** | 285.5 | 284.2 | 286.4 | **285.3** |
+| **0.1% Low Average** | 245.3 | 248.8 | 243.5 | **245.8** |
+
+#### 📝 Analysis: Hardware-Accelerated GPU Scheduling
+HAGS allows the graphics card to manage its own memory rather than relying entirely on the Windows scheduler. The benchmark shows a slight but measurable performance uplift when HAGS is enabled. The average framerate gains roughly 6.5 FPS, and the 1% and 0.1% lows are marginally tighter. For high-end setups in CS2, leaving HAGS **ON** is the superior choice.
+
+---
+
+### ⚙️ CS2: Windows Game Mode ON
+
+#### 📈 FPS Results (Frames Per Second)
+
+| Metric | Run 1 | Run 2 | Run 3 | 🏆 AVERAGE |
+|---|---|---|---|---|
+| **Average FPS** | 900.1 | 898.7 | 901.5 | **900.1** |
+| **P1 (1%)** | 304.0 | 303.5 | 305.0 | **304.1** |
+| **P0.1 (0.1%)** | 272.8 | 270.8 | 274.9 | **272.6** |
+| **1% Low Average** | 287.7 | 286.6 | 289.2 | **287.8** |
+| **0.1% Low Average** | 249.1 | 243.3 | 252.8 | **248.2** |
+
+---
+
+### ⚙️ CS2: Windows Game Mode OFF
+
+#### 📈 FPS Results (Frames Per Second)
+
+| Metric | Run 1 | Run 2 | Run 3 | 🏆 AVERAGE |
+|---|---|---|---|---|
+| **Average FPS** | 893.1 | 895.5 | 894.6 | **894.4** |
+| **P1 (1%)** | 304.2 | 301.0 | 299.1 | **301.2** |
+| **P0.1 (0.1%)** | 267.1 | 271.2 | 268.8 | **268.8** |
+| **1% Low Average** | 285.4 | 285.2 | 284.0 | **284.7** |
+| **0.1% Low Average** | 243.8 | 249.1 | 246.0 | **246.3** |
+
+#### 📝 Analysis: Windows Game Mode
+Game Mode is designed to suspend background tasks (like Windows Updates) and prioritize CPU resources for the active game. The results indicate a positive impact: turning Game Mode ON yields about 5.7 more Average FPS and slightly bolsters the frametime stability. Modern Windows Game Mode functions correctly and should be kept **ON**.
+
+---
+
+### ⚙️ CS2: Core Isolation ON
+
+#### 📈 FPS Results (Frames Per Second)
+
+| Metric | Run 1 | Run 2 | Run 3 | 🏆 AVERAGE |
+|---|---|---|---|---|
+| **Average FPS** | 872.1 | 873.5 | 878.3 | **874.6** |
+| **P1 (1%)** | 286.2 | 290.7 | 291.6 | **289.2** |
+| **P0.1 (0.1%)** | 254.8 | 260.0 | 261.8 | **258.4** |
+| **1% Low Average** | 270.3 | 275.5 | 275.5 | **273.6** |
+| **0.1% Low Average** | 231.9 | 238.0 | 233.6 | **234.3** |
+
+---
+
+### ⚙️ CS2: Core Isolation OFF
+
+#### 📈 FPS Results (Frames Per Second)
+
+| Metric | Run 1 | Run 2 | Run 3 | 🏆 AVERAGE |
+|---|---|---|---|---|
+| **Average FPS** | 900.1 | 898.7 | 901.5 | **900.1** |
+| **P1 (1%)** | 304.0 | 303.5 | 305.0 | **304.1** |
+| **P0.1 (0.1%)** | 272.8 | 270.8 | 274.9 | **272.6** |
+| **1% Low Average** | 287.7 | 286.6 | 289.2 | **287.8** |
+| **0.1% Low Average** | 249.1 | 243.3 | 252.8 | **248.2** |
+
+#### 📝 Analysis: Core Isolation (Memory Integrity)
+Core Isolation (HVCI) adds a virtualized security layer to protect system processes from malicious code. While excellent for enterprise security, it introduces a massive processing overhead for gaming. Leaving it ON causes a severe performance penalty, stripping over 25 FPS from the average and dropping the 0.1% lows by nearly 14 frames. For maximum competitive performance in CPU-bound games, Core Isolation should be turned **OFF**.
+
+---
+
+### 🏆 Windows Settings Conclusion
+To extract the absolute maximum performance from Windows 11 for CS2, the optimal system configuration is:
+* **HAGS:** Enabled
+* **Game Mode:** Enabled
+* **Core Isolation (VBS/Memory Integrity):** Disabled
+
+This combination ensures the game receives top CPU priority, optimal GPU memory scheduling, and suffers zero virtualized security overhead.
 
 </details>
 
