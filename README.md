@@ -278,7 +278,7 @@ While Test Case 4 (Hard Affinity) peaked slightly higher at 899 FPS compared to 
 <summary><h2>🖥️ Section 2: Windows Settings & Optimizations</h2></summary>
 
 ### Overview
-This section examines the performance impact of built-in Windows 11 system features: Hardware-Accelerated GPU Scheduling (HAGS), Windows Game Mode, and Core Isolation (Virtualization-Based Security / Memory Integrity). We will compare each feature in an ON vs OFF state to determine the optimal configuration for raw frame throughput and frametime stability.
+This section examines the performance impact of built-in Windows 11 system features: Hardware-Accelerated GPU Scheduling (HAGS), Windows Game Mode, Core Isolation (Virtualization-Based Security / Memory Integrity), and Windows Power Plans. We will compare each feature to determine the optimal configuration for raw frame throughput and frametime stability.
 
 ---
 
@@ -375,13 +375,32 @@ Core Isolation (HVCI) adds a virtualized security layer to protect system proces
 
 ---
 
+### ⚙️ CS2: Power Plans Comparison
+
+#### 📈 FPS Results (Frames Per Second)
+
+| Power Plan / Setting | Average FPS | P1 (1%) | 1% Low Avg | P0.1 (0.1%) | 0.1% Low Avg |
+|---|---|---|---|---|---|
+| **Balanced Power Plan** | 894.8 | 300.1 | 285.1 | 269.0 | 248.9 |
+| **High Performance Power Plan** | 890.6 | 299.7 | 284.1 | 268.5 | 245.9 |
+| **Ultimate Performance Power Plan** | 892.8 | 298.0 | 281.7 | 265.3 | 240.7 |
+| **Ultimate Performance Power Plan by Erza** | 906.4 | 300.1 | 283.8 | 270.2 | 244.7 |
+
+#### 📝 Analysis: Windows Power Plans
+Windows power plans dictate how aggressively the CPU scales its frequency and manages idle states. Surprisingly, the standard Windows **Balanced** plan outperforms both the default "High Performance" and "Ultimate Performance" profiles, especially in maintaining higher 0.1% Lows. The modern Windows 11 scheduler is already highly optimized for chips like the 7800X3D when left on its default settings.
+
+The **Ultimate Performance Power Plan by Erza** is a slightly modified version of the default Ultimate plan, specifically tweaked to manage core parking and state transitions. It successfully pushes the highest raw Average FPS of the group (906.4 FPS). However, despite this peak performance gain, the 0.1% lows are still marginally tighter on the standard Balanced plan (248.9 vs 244.7). 
+
+---
+
 ### 🏆 Windows Settings Conclusion
 To extract the absolute maximum performance from Windows 11 for CS2, the optimal system configuration is:
 * **HAGS:** Enabled
 * **Game Mode:** Enabled
 * **Core Isolation (VBS/Memory Integrity):** Disabled
+* **Power Plan:** **Balanced** (Highly recommended for the vast majority of users due to excellent stability and power efficiency) or the custom **Erza Ultimate Plan** if you want to squeeze out every single drop of peak Average FPS.
 
-This combination ensures the game receives top CPU priority, optimal GPU memory scheduling, and suffers zero virtualized security overhead.
+This combination ensures the game receives top CPU priority, optimal GPU memory scheduling, zero virtualized security overhead, and stable CPU frequency scaling.
 
 </details>
 
