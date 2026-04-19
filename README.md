@@ -21,14 +21,25 @@ Comprehensive guide and data-driven analysis of CS2 performance across CPU sched
 ## 🔬 Methodology & Test Environment
 
 ### 📅 General Info
-**Date of Testing:** 17.04.2026 (Main PC Benchmarks)
+**Date of Testing:** 17-20.04.2026 (Main PC Benchmarks)
 
 The benchmarks were conducted in a strictly controlled environment to ensure repeatability.
 * **Isolation:** Only Steam (Offline Mode), CapFrameX (Capture Tool), and Process Core Optimizer were active in the background.
 * **Procedure:** Each test case consists of 3 identical benchmark runs to calculate a reliable average.
-* **Launch Options:** `-allow_third_party_software` (required for CapFrameX). No other parameters used.
+* **Launch Options:** `-allow_third_party_software` (strictly required for CapFrameX hooking). No other parameters were used.
 * **Thread Scheduling:** All core affinity and CPU Sets modifications were handled exclusively via [Process Core Optimizer](https://github.com/9Erza/ProcessCoreOptimizer).
   * *Software Disclaimer:* This is a hobbyist project. Professional alternatives like **Process Lasso** can achieve similar results.
+
+### 🛠️ Benchmarking Tool, Map & Data Collection
+All testing runs were automated using [CS2-consistent-benchmarking-tool](https://github.com/9Erza/CS2-consistent-benchmarking-tool) AutoHotkey script, executed on the [CS2 FPS Benchmark](https://steamcommunity.com/workshop/filedetails/?id=3240880604) workshop map.
+
+**📊 Data Extraction (CapFrameX):**
+All exact performance metrics—including Average FPS, 1% Lows, 0.1% Lows, and precise frametime variances—were captured and extracted exclusively using **CapFrameX** reports.
+
+**💡 Why this specific tool and method?**
+As most CS2 players are aware, workshop benchmarks do not show the exact FPS you can expect in real competitive 5v5 matches (generally, workshop benchmark results are higher than those seen in Premier or FACEIT). 
+
+However, the primary goal of this testing methodology is **consistency**. By using this specific closed-environment workshop map combined with the AutoHotkey script and **CapFrameX**, we achieve highly reproducible performance results with almost zero run-to-run variance. This strict consistency is absolutely crucial for accurately evaluating which graphics settings, Windows tweaks, or hardware changes actually improve performance, allowing for precise and effective game optimization.
 
 ### 🖥️ Main System Specifications
 * **CPU:** AMD Ryzen 7 7800X3D
