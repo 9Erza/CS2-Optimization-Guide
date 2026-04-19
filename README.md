@@ -1110,19 +1110,40 @@ FSR functions by rendering the game at a lower resolution and artificially upsca
 
 ---
 
-<details>
-<summary><h2>🏆 Section 10: Summary & Recommended Optimized Settings</h2></summary>
+## 🏆 Section 10: Summary & Recommended Optimized Settings
 
 ### Final Conclusions
-* **Optimal Windows Config:** ...
-* **Optimal CPU Config:** ...
-* **Optimal Graphics Config:** ...
+After rigorous testing across multiple system layers, the data paints a very clear picture of what actually matters for Counter-Strike 2 performance on a modern system. Relying on outdated CS:GO myths or placebo "FPS boost" packs will often hurt your performance rather than help it. 
 
-### Suggested Settings Table
-*(Place for final suggested settings)*
+Here is the definitive summary of how to optimize your setup:
 
-</details>
+* **Optimal CPU Config:** The biggest performance gains come from intelligent thread scheduling. For top-tier CPUs like the 7800X3D, using **Windows CPU Sets** to disable SMT and park Core 0 yields massive improvements to 1% and 0.1% lows. Avoid using Hard Affinity, as it clashes with kernel-level software like the FACEIT Anti-Cheat. 
+* **Optimal Windows Config:** Let the modern OS do its job. Keep **Game Mode** and **HAGS** Enabled. Ensure **Core Isolation (VBS)** is Disabled, as it introduces severe virtualization overhead. Finally, stick to the **Balanced Power Plan** (or a properly tweaked custom plan like the Erza Ultimate Plan) for the best frametime stability.
+* **Optimal Graphics Config:** Competitive CS2 is about balancing peak FPS with perfect visibility. Most settings should be turned down to minimize visual clutter and GPU load. However, you *must* keep **Dynamic Shadows on All**, **MSAA on 2X**, and **HDR on High** to prevent massive visibility disadvantages. 
+* **Launch Options & Latency Tech:** Keep your launch options clean (no legacy `-high` or thread commands). When it comes to **NVIDIA Reflex / AMD Anti-Lag 2.0**, the choice is heavily based on personal preference and game feel. Technologically, these features pace the CPU to prevent it from running ahead of the GPU, reducing the render queue and theoretically minimizing click-to-photon input latency. However, they carry a significant FPS penalty, which can cause noticeable stuttering on weaker systems. While technically a "YES" for latency reduction, it is a firm "NO" for raw FPS. Observing the current meta, the vast majority of top professional CS2 players keep these technologies **Disabled**. Since I currently lack the physical hardware (like LDAT tools) to measure exact end-to-end latency, I cannot give a definitive verdict yet. I will update this guide once I have the tools to verify their exact impact, but for now: test it yourself, and if in doubt, leave it disabled.
 
 ---
 
-*Copyright (c) 2026 9Erza. Personal testing and benchmarks.*
+### Suggested In-Game Settings Table
+Below is the final, fully optimized configuration derived directly from the benchmark data in this guide. This setup guarantees the highest possible frame rates without sacrificing crucial competitive visibility.
+
+| Category | Setting | Recommended Value |
+| :--- | :--- | :--- |
+| **Video** | Resolution | **1280x960** (Performance) or **1920x1080** (Clarity) |
+| **Video** | Display Mode | **Borderless Windowed** *(If Windows 11 optimizations are ON)* |
+| **Advanced Video** | Boost Player Contrast | **Enabled** |
+| **Advanced Video** | Wait for Vertical Sync | **Disabled** |
+| **Advanced Video** | Multisampling Anti-Aliasing Mode | **2X MSAA** |
+| **Advanced Video** | Global Shadow Quality | **Low** |
+| **Advanced Video** | Dynamic Shadows | **All** |
+| **Advanced Video** | Model / Texture Detail | **Low** |
+| **Advanced Video** | Texture Filtering Mode | **Anisotropic 2X** *(or 16X for high-end PCs)* |
+| **Advanced Video** | Shader Detail | **Low** |
+| **Advanced Video** | Particle Detail | **Low** |
+| **Advanced Video** | Ambient Occlusion | **Disabled** |
+| **Advanced Video** | High Dynamic Range | **High** |
+| **Advanced Video** | FidelityFX Super Resolution | **Disabled (Highest Quality)** |
+| **Advanced Video** | NVIDIA Reflex / AMD Anti-Lag 2.0 | **Disabled / Preference** |
+
+---
+
