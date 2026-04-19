@@ -1,23 +1,35 @@
+<div align="center">
+
 # 🎮 Counter-Strike 2 Optimization Guide & Performance Benchmarks
 
-Comprehensive guide and data-driven analysis of CS2 performance across CPU scheduling, Windows configurations, and graphical settings.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Game: CS2](https://img.shields.io/badge/Game-Counter--Strike_2-orange.svg)](https://www.counter-strike.net/)
+[![Platform: Windows 11](https://img.shields.io/badge/Platform-Windows_11-blue.svg)]()
+[![Data Collection: CapFrameX](https://img.shields.io/badge/Data_Collection-CapFrameX-lightgrey.svg)]()
+[![Automation: AutoHotkey](https://img.shields.io/badge/Automation-AutoHotkey-green.svg)]()
+
+*Comprehensive guide and data-driven analysis of CS2 performance across CPU scheduling, Windows configurations, and graphical settings.*
+
+</div>
 
 ---
 
 ## 📌 Table of Contents
-1. [🔬 Methodology & Test Environment](#-methodology--test-environment)
-2. [⚙️ Section 1: CPU Scheduling (Affinity & CPU Sets)](#-section-1-cpu-scheduling)
-3. [🖥️ Section 2: Windows Settings & Optimizations](#-section-2-windows-settings)
-4. [🚀 Section 3: CS2 Launch Options](#-section-3-launch-options)
-5. [📺 Section 4: Display Modes (Full Screen vs Borderless)](#-section-4-display-modes)
-6. [📏 Section 5: Resolutions Comparison](#-section-5-resolutions-comparison)
-7. [🛡️ Section 6: FACEIT Anti-Cheat Impact & Optimization](#-section-6-faceit-anti-cheat-impact)
-8. [🏎️ Section 7: Latency Technologies (AMD Anti-Lag 2.0 & NVIDIA Reflex)](#-section-7-latency-technologies)
-9. [📊 Section 8: Graphics Settings Performance Impact](#-section-8-graphics-impact)
-10. [🖼️ Section 9: Visual Comparison & Visibility Guide](#-section-9-visual-comparisons)
-11. [🏆 Section 10: Summary & Recommended Settings](#-section-10-summary)
+1. [🔬 Methodology & Test Environment](#methodology)
+2. [⚙️ Section 1: CPU Scheduling (Affinity & CPU Sets)](#section-1)
+3. [🖥️ Section 2: Windows Settings & Optimizations](#section-2)
+4. [🚀 Section 3: CS2 Launch Options](#section-3)
+5. [📺 Section 4: Display Modes (Full Screen vs Borderless)](#section-4)
+6. [📏 Section 5: Resolutions Comparison](#section-5)
+7. [🛡️ Section 6: FACEIT Anti-Cheat Impact & Optimization](#section-6)
+8. [🏎️ Section 7: Latency Technologies (Anti-Lag 2.0 & NVIDIA Reflex)](#section-7)
+9. [📊 Section 8: Graphics Settings Performance Impact](#section-8)
+10. [🖼️ Section 9: Visual Comparison & Visibility Guide](#section-9)
+11. [🏆 Section 10: Summary & Recommended Settings](#section-10)
+
 ---
 
+<a id="metodology"></a>
 ## 🔬 Methodology & Test Environment
 
 ### 📅 General Info
@@ -74,6 +86,7 @@ The following settings were used for **all tests** (except Section 5, where sett
 
 ---
 
+<a id="section-1"></a>
 <details>
 <summary><h2>⚙️ Section 1: CPU Scheduling (Affinity & CPU Sets)</h2></summary>
 
@@ -274,6 +287,7 @@ While Test Case 4 (Hard Affinity) peaked slightly higher at 899 FPS compared to 
 
 ---
 
+<a id="section-2"></a>
 <details>
 <summary><h2>🖥️ Section 2: Windows Settings & Optimizations</h2></summary>
 
@@ -406,6 +420,7 @@ This combination ensures the game receives top CPU priority, optimal GPU memory 
 
 ---
 
+<a id="section-3"></a>
 <details>
 <summary><h2>🚀 Section 3: Launch Options</h2></summary>
 
@@ -465,6 +480,7 @@ The data proves that crowding your CS2 launch options with legacy "FPS boost" co
 
 ---
 
+<a id="section-4"></a>
 <details>
 <summary><h2>📺 Section 4: Display Modes - Fullscreen vs Borderless</h2></summary>
 
@@ -533,6 +549,7 @@ For players using modern hardware and Windows 11 (with "Optimizations for window
 
 ---
 
+<a id="section-5"></a>
 <details>
 <summary><h2>📏 Section 5: Resolutions Comparison</h2></summary>
 
@@ -599,6 +616,7 @@ The tests show a clear scaling of Average FPS as resolution decreases, but inter
 
 ---
 
+<a id="section-6"></a>
 <details>
 <summary><h2>🛡️ Section 6: FACEIT Anti-Cheat Impact & Optimization</h2></summary>
 
@@ -703,6 +721,7 @@ Whether you use CPU Sets, Hard Affinity, isolate the AC, or isolate the game, th
 
 ---
 
+<a id="section-7"></a>
 <details>
 <summary><h2>🏎️ Section 7: Latency Technologies - AMD Anti-Lag 2.0 & NVIDIA Reflex)</h2></summary>
 
@@ -772,6 +791,8 @@ What you gain in return is a mathematically shorter render queue and lower end-t
 </details>
 
 ---
+
+<a id="section-8"></a>
 <details>
 <summary><h2>📊 Section 8: Graphics Settings Perfomance Impact</h2></summary>
 
@@ -920,6 +941,7 @@ Based on the isolated testing above, we can clearly categorize the settings by t
 
 ---
 
+<a id="section-9"></a>
 <details>
 <summary><h2>🖼️ Section 9: Visual Comparison & Visibility Guide</h2></summary>
 
@@ -1110,6 +1132,7 @@ FSR functions by rendering the game at a lower resolution and artificially upsca
 
 ---
 
+<a id="section-10"></a>
 ## 🏆 Section 10: Summary & Recommended Optimized Settings
 
 ### Final Conclusions
