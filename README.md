@@ -377,6 +377,65 @@ This combination ensures the game receives top CPU priority, optimal GPU memory 
 ---
 
 <details>
+<summary><h2>🚀 Section 3: Launch Options</h2></summary>
+
+### Overview
+For over a decade, CS:GO players hoarded massive lists of "FPS boosting" launch options. With the transition to Counter-Strike 2 and the Source 2 engine, the community debate continues on whether these legacy commands still work. 
+
+In this section, we test the most heavily recommended launch commands against a completely clean baseline to see if any of them actually provide a measurable performance uplift, or if they are simply placebo.
+
+---
+
+#### 📈 FPS Results (Frames Per Second)
+
+| Command | Average FPS | P1 (1%) | 1% Low Avg | P0.1 (0.1%) | 0.1% Low Avg |
+|---|---|---|---|---|---|
+| **no startup commands (Baseline)** | 900.7 | 300.2 | 284.5 | 269.8 | 247.5 |
+| **-high** | 902.6 | 303.3 | 287.5 | 272.8 | 250.0 |
+| **-mainthreadpriority 2** *(Run 1)* | 894.2 | 299.9 | 284.9 | 270.2 | 246.4 |
+| **+thread_pool_option 0** | 899.3 | 305.5 | 289.3 | 272.1 | 249.0 |
+| **+thread_pool_option 4** | 901.6 | 304.0 | 288.8 | 275.0 | 253.8 |
+| **+r_dynamic 0** | 899.5 | 302.9 | 287.5 | 270.8 | 250.6 |
+| **-limitvsconst** | 899.8 | 303.1 | 287.0 | 271.9 | 246.1 |
+| **+mat_disable_fancy_blending 1** | 897.3 | 304.0 | 288.8 | 273.7 | 250.9 |
+| **+r_drawparticles 0** | 924.2 | 304.3 | 289.7 | 274.2 | 254.9 |
+| **+violence_hblood 0** | 898.5 | 303.2 | 287.3 | 272.3 | 248.3 |
+| **-softparticlesdefaultoff** | 897.3 | 303.8 | 288.7 | 274.0 | 251.0 |
+| **-nojoy** | 897.0 | 301.1 | 285.8 | 269.4 | 249.5 |
+
+---
+
+### 📝 Analysis & Breakdown
+
+**1. The Legacy Placebos (Source 1 Leftovers)**
+Commands like `-limitvsconst`, `+mat_disable_fancy_blending 1`, `-softparticlesdefaultoff`, `+r_dynamic 0`, `+violence_hblood 0`, and `-nojoy` are remnants of the past. As the data clearly shows, none of them provide a performance boost. In fact, most of them result in a negligible ~1 to ~3 FPS *drop* compared to a clean launch. The Source 2 engine either ignores them completely or handles these render pipelines internally, rendering the commands obsolete. 
+
+**2. Thread Management Commands**
+Commands like `-mainthreadpriority 2` and `+thread_pool_option (0/4)` have recently gained traction in the community. 
+* **`+thread_pool_option`**: Designed primarily to help Intel 12th/13th/14th Gen processors separate game threads from E-cores. On our AMD Ryzen 7800X3D (which only has identical P-cores), this command does absolutely nothing and falls entirely within the margin of error.
+* **`-mainthreadpriority 2`**: Surprisingly, forcing the main thread priority through the engine actually caused a consistent performance regression, dropping the average by ~6 FPS across multiple runs.
+
+**3. Process Priority (`-high`)**
+Adding `-high` to force the Windows scheduler to prioritize the game yielded a tiny ~2 FPS increase. Because we already have "Windows Game Mode" enabled (which does this natively and safely at the OS level), this command is redundant and unnecessary.
+
+**4. The Only Outlier (`+r_drawparticles 0`)**
+This is the only command that provided a measurable, significant performance boost (gaining ~24 Average FPS). However, there is a massive catch: this command disables the rendering of particles. While your FPS goes up, you lose critical visual information (like smoke grenade plumes, molotov flames, and bullet impacts). Furthermore, it is heavily restricted on official servers, making it completely unviable for competitive matchmaking.
+
+---
+
+### 🏆 Launch Options Conclusion
+
+**Less is more.**
+
+The data proves that crowding your CS2 launch options with legacy "FPS boost" commands from 2015 does more harm than good. The Source 2 engine is vastly superior at managing its own memory, shaders, and lighting than the original game. 
+
+**Recommendation:** Clear your launch options. Aside from utility commands (like `-novid` to skip the intro, `-console` to enable the console, or `-allow_third_party_software` for recording tools), you should rely purely on Windows settings and in-game graphics menus to optimize your framerate.
+
+</details>
+
+---
+
+<details>
 <summary><h2>📺 Section 4: Display Modes - Fullscreen vs Borderless</h2></summary>
 
 ### Overview
