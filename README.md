@@ -33,7 +33,16 @@
 ## 🔬 Methodology & Test Environment
 
 ### 📅 General Info
-**Date of Testing:** 17-20.04.2026 (Main PC Benchmarks)
+* **Testing Period:** 17.04.2026 – 22.04.2026
+* **Game Version:** Includes **Animgraph Update** (21.04.2026)
+
+> [!IMPORTANT]
+> **Update Note (21.04.2026):** > The recent CS2 **Animgraph Update** does not affect the core optimization methods provided in this repository. 
+> 
+> **Internal Testing Observations:**
+> * Optimization logic remains fully valid.
+> * The update itself introduces minor improvements to **1% and 0.1% low FPS**.
+> * Average FPS remains within the margin of error compared to pre-patch results.
 
 The benchmarks were conducted in a strictly controlled environment to ensure repeatability.
 * **Isolation:** Only Steam (Offline Mode), CapFrameX (Capture Tool), and Process Core Optimizer were active in the background.
