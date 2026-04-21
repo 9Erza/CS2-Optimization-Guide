@@ -864,7 +864,7 @@ CMAA2 (Conservative Morphological Anti-Aliasing), on the other hand, is a post-p
 | Setting | Avg FPS | P1 FPS | 1% Low Avg | P0.1 FPS | 0.1% Low Avg |
 |---|---|---|---|---|---|
 | Bilinear | 979,5 | 301,5 | 284,7 | 267,1 | 249,3 |
-| Trilinear | 953,5 | 303,3 | 266,1 | 272,9 | 146,8 |
+| Trilinear | 953,5 | 303,3 | 266,1 | 272,9 | 246,8 |
 | Anisotropic 2x | 975,5 | 309,5 | 294,3 | 279,0 | 257,5 |
 | Anisotropic 4x | 964,4 | 298,2 | 283,9 | 269,7 | 250,6 |
 | Anisotropic 8x | 971,7 | 300,4 | 284,5 | 270,8 | 247,7 |
